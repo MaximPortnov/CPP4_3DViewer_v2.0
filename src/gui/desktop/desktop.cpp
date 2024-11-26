@@ -114,124 +114,7 @@ MainWindow::MainWindow(QWidget *parent)
   victoryLabel_->setGeometry(0, 0, this->width(), this->height());
 }
 
-void MainWindow::updateGameInfo(const GameInfo_t &gameInfo, bool start,
-                                bool gameOver, bool victory) {
-  if (start) {
-    pauseLabel_->hide();
-    gameOverLabel_->hide();
-    victoryLabel_->hide();
-    startLabel_->show();
-    return;
-  } else {
-    startLabel_->hide();
-  }
-
-  if (gameOver) {
-    pauseLabel_->hide();
-    startLabel_->hide();
-    victoryLabel_->hide();
-    gameOverLabel_->show();
-    return;
-  } else {
-    gameOverLabel_->hide();
-  }
-
-  if (victory) {
-    pauseLabel_->hide();
-    startLabel_->hide();
-    gameOverLabel_->hide();
-    victoryLabel_->show();
-    return;
-  } else {
-    victoryLabel_->hide();
-  }
-
-  int rows = ui->tableWidget->rowCount();
-  int columns = ui->tableWidget->columnCount();
-
-  if (gameInfo.field) {
-    for (int i = 0; i < rows; ++i) {
-      for (int j = 0; j < columns; ++j) {
-        int value = gameInfo.field[j][i];
-        QTableWidgetItem *item = ui->tableWidget->item(i, j);
-        if (!item) {
-          item = new QTableWidgetItem();
-          ui->tableWidget->setItem(i, j, item);
-        }
-        item->setBackground(colors[value]);
-      }
-    }
-  }
-  int nextRows = ui->nextTableWidget->rowCount();
-  int nextColumns = ui->nextTableWidget->columnCount();
-
-  if (gameInfo.next) {
-    for (int i = 0; i < nextRows; ++i) {
-      for (int j = 0; j < nextColumns; ++j) {
-        int value = gameInfo.next[i][j];
-        QTableWidgetItem *item = ui->nextTableWidget->item(i, j);
-        if (!item) {
-          item = new QTableWidgetItem();
-          ui->nextTableWidget->setItem(i, j, item);
-        }
-        item->setBackground(colors[value]);
-      }
-    }
-  }
-
-  scoreLabel->setText(QString::number(gameInfo.score));
-  highScoreLabel->setText(QString::number(gameInfo.high_score));
-  levelLabel->setText(QString::number(gameInfo.level));
-  speedLabel->setText(QString::number(gameInfo.speed));
-  pauseLabel->setText(QString::number(gameInfo.pause));
-
-  if (gameInfo.pause) {
-    pauseLabel_->show();
-  } else {
-    pauseLabel_->hide();
-  }
-}
-
-UserAction_t MainWindow::getSignal(bool t) {
-  UserAction_t action;
-  switch (signal) {
-    case Qt::Key_Tab:
-      action = Pause;
-      break;
-    case Qt::Key_Escape:
-      action = Terminate;
-      break;
-    case Qt::Key_Return:
-      action = Start;
-      break;
-    case Qt::Key_Up:
-      action = Up;
-      break;
-    case Qt::Key_Left:
-      action = Left;
-      break;
-    case Qt::Key_Right:
-      action = Right;
-      break;
-    case Qt::Key_Down:
-      action = Down;
-      break;
-    case Qt::Key_Space:
-      action = Action;
-      break;
-    default:
-      action = None;
-      break;
-  }
-  if (t) {
-    signal = -1;
-  }
-  return action;
-}
-
 void MainWindow::nextHide() { ui->groupBox_6->hide(); }
-
-void MainWindow::setLambda(std::function<void(void)> fun) { fun_ = fun; }
 
 MainWindow::~MainWindow() { delete ui; }
 
@@ -239,4 +122,9 @@ void MainWindow::keyPressEvent(QKeyEvent *event) { signal = event->key(); }
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event) { signal = -1; }
 
-void MainWindow::timerEvent(QTimerEvent *event) { fun_(); }
+int main(int argc, char *argv[]) {
+  QApplication a(argc, argv);
+  MainWindow w;
+  w.show();
+  return a.exec();
+}

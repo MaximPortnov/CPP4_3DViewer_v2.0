@@ -136,3 +136,9 @@ mm:
 	cmake --build build/Debug
 	./build/Debug/s21_BrickGame
 
+mr:
+	cmake -B build -DCMAKE_BUILD_TYPE=Debug
+	cmake --build build/
+	./build/desktop
+
+

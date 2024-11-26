@@ -16,7 +16,6 @@
 #include <functional>
 #include <iostream>
 
-#include "../../control/defines.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,11 +26,7 @@ class MainWindow : public QMainWindow {
 
  public:
   explicit MainWindow(QWidget *parent = 0);
-  void updateGameInfo(const GameInfo_t &gameInfo, bool start, bool gameOver,
-                      bool victory = false);
-  UserAction_t getSignal(bool t = false);
   void nextHide();
-  void setLambda(std::function<void(void)> fun);
   ~MainWindow();
 
  private:
@@ -53,7 +48,6 @@ class MainWindow : public QMainWindow {
 
   void keyPressEvent(QKeyEvent *event) override;
   void keyReleaseEvent(QKeyEvent *event) override;
-  void timerEvent(QTimerEvent *event) override;
 };
 
 #endif  // __DESKTOP_H__

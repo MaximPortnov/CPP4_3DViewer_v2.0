@@ -18,8 +18,7 @@ class CompressorRecipe(ConanFile):
 
         
     def requirements(self):
-        self.requires("ncurses/6.4")
-        self.requires("sqlite3/3.46.1")
+        # self.requires("sqlite3/3.46.1")
         self.requires("qt/6.6.3")
 
     def layout(self):

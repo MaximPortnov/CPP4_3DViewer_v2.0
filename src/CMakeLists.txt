@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.22)
 
 project(
     s21_BrickGame
@@ -16,23 +16,21 @@ if(WIN32)
     add_compile_options(/permissive-)
 endif()
 
-
-set(QT_PLUGIN_PATH "${CMAKE_BINARY_DIR}/bin/qt_plugins")
-set(ENV{QT_PLUGIN_PATH} ${QT_PLUGIN_PATH})
-
-find_package(Qt6)
-find_package(SQLite3)
+# find_package(Qt6 REQUIRED)
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
+# find_package(SQLite3)
 
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
 
 if(WIN32)
 endif()
 if(UNIX)
 endif()
 
-SET(DESKTOP_LIB qt::qt)
+SET(DESKTOP_LIB Qt6::Widgets)
 
-SET(MAIN_LIB ${MAIN_LIB} SQLite::SQLite3)
+SET(MAIN_LIB ${MAIN_LIB} )
 
 SET(TEST_LIB ${MAIN_LIB} -lm -lcheck -pthread -lsubunit -lgcov)
 
@@ -128,19 +126,19 @@ function(create_target target_name)
 endfunction()
 
 ####################################
-create_library(tetris FILES ${TETRIS_LOGICAL_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB})
-create_library(tetris_test FILES ${TETRIS_LOGICAL_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} DEFS MYDEBUG)
-create_library(snake FILES ${SNAKE_LOGICAL_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB})
-create_library(snake_test FILES ${SNAKE_LOGICAL_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} DEFS MYDEBUG)
+# create_library(tetris FILES ${TETRIS_LOGICAL_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB})
+# create_library(tetris_test FILES ${TETRIS_LOGICAL_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} DEFS MYDEBUG)
+# create_library(snake FILES ${SNAKE_LOGICAL_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB})
+# create_library(snake_test FILES ${SNAKE_LOGICAL_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} DEFS MYDEBUG)
 
-create_library(cli FILES ${CLI_FILES} FLAGS ${MAIN_FLAGS} LIBS ${CLI_LIB} )
+# create_library(cli FILES ${CLI_FILES} FLAGS ${MAIN_FLAGS} LIBS ${CLI_LIB} )
 
-qt6_wrap_cpp(MOC_SOURCES  "gui/desktop/desktop.h")
-create_library(desktop FILES ${DESKTOP_FILES} ${MOC_SOURCES} ${UI_HEADERS} FLAGS ${MAIN_FLAGS} LIBS ${DESKTOP_LIB})
+# create_target(MOC_SOURCES  "gui/desktop/desktop.h")
+create_target(desktop FILES ${DESKTOP_FILES} ${MOC_SOURCES} ${UI_HEADERS} FLAGS ${MAIN_FLAGS} LIBS ${DESKTOP_LIB})
 target_include_directories(desktop PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
-create_target(test_c FILES ${TEST_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} tetris_test DEFS MYDEBUG)
+# create_target(test_c FILES ${TEST_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} tetris_test DEFS MYDEBUG)
 
-create_target(s21_BrickGame FILES ${CONTROL_FILES} ${MOC_SOURCES} ${UI_HEADERS}  FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} tetris snake cli desktop)
+# create_target(s21_BrickGame FILES ${CONTROL_FILES} ${MOC_SOURCES} ${UI_HEADERS}  FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} tetris snake cli desktop)
 
-add_subdirectory("test/cpp/")
+# add_subdirectory("test")
