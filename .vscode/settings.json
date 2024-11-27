@@ -1,0 +1,16 @@
+{
+    "editor.tabSize": 4,
+    "[cpp]": {
+        "editor.tabSize": 2
+    },
+    "[c]": {
+        "editor.tabSize": 2
+    },
+    "[python]": {
+        "editor.tabSize": 4
+    },
+    "files.associations": {
+        "qrandomgenerator": "cpp",
+        "qwidget": "cpp"
+    }
+}

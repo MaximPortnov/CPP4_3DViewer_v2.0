@@ -1,17 +1,18 @@
 #ifndef __DESKTOP_H__
 #define __DESKTOP_H__
 
-#include <QtCore/QRandomGenerator>
-#include <QtCore/QTimerEvent>
-#include <QtCore/QtDebug>
-#include <QtGui/QKeyEvent>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QTableWidgetItem>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QWidget>
+#include <qt6/QtCore/QRandomGenerator>
+#include <qt6/QtCore/QTimerEvent>
+#include <qt6/QtCore/QtDebug>
+#include <qt6/QtGui/QKeyEvent>
+#include <qt6/QtWidgets/QApplication>
+#include <qt6/QtWidgets/QLabel>
+#include <qt6/QtWidgets/QMainWindow>
+#include <qt6/QtWidgets/QPushButton>
+#include <qt6/QtWidgets/QTableWidgetItem>
+#include <qt6/QtWidgets/QVBoxLayout>
+#include <qt6/QtWidgets/QWidget>
+
 #include <array>
 #include <functional>
 #include <iostream>
@@ -40,9 +41,8 @@ class MainWindow : public QMainWindow {
   QLabel *gameOverLabel_;
   QLabel *pauseLabel_;
   QLabel *victoryLabel_;
-  std::function<void(void)> fun_;
   std::array<QColor, 11> colors = {
-      Qt::white, Qt::red,   Qt::green,  Qt::yellow, Qt::blue,  Qt::magenta,
+       Qt::white, Qt::red,   Qt::green,  Qt::yellow, Qt::blue,  Qt::magenta,
       Qt::cyan,  Qt::black, Qt::yellow, Qt::white,  Qt::yellow};
   Ui::MainWindow *ui;
 

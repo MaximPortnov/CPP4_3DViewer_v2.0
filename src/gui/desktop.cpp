@@ -1,5 +1,3 @@
-
-
 #include "desktop.h"
 
 #include <ui_desktop.h>
@@ -107,7 +105,7 @@ MainWindow::MainWindow(QWidget *parent)
   pauseLabel_->setStyleSheet("font-size: 30px; color: red; font-weight: bold;");
   pauseLabel_->setGeometry(0, 0, this->width(), this->height());
 
-  victoryLabel_ = new QLabel("Victory", this);
+  victoryLabel_ = new QLabel("asdasasdasdasdasd", this);
   victoryLabel_->setAlignment(Qt::AlignCenter);
   victoryLabel_->setStyleSheet(
       "font-size: 30px; color: yellow; font-weight: bold;");
@@ -122,9 +120,3 @@ void MainWindow::keyPressEvent(QKeyEvent *event) { signal = event->key(); }
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event) { signal = -1; }
 
-int main(int argc, char *argv[]) {
-  QApplication a(argc, argv);
-  MainWindow w;
-  w.show();
-  return a.exec();
-}

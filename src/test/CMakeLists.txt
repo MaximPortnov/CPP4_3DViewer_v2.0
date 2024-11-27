@@ -25,11 +25,11 @@ IF(UNIX)
 endif()
 
 enable_testing()
-create_target(test_cpp FILES ${TEST_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} snake_test )
+create_target(test FILES ${TEST_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB})
 
 include(GoogleTest)
 
-gtest_discover_tests(test_cpp)
+gtest_discover_tests(test)
 
 find_program(CCACHE_PROGRAM ccache)
 if(CCACHE_PROGRAM)
