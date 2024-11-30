@@ -11,6 +11,16 @@
             "program": "${workspaceFolder}/src/build/Debug/3DViewer_v2",
             "args": [],
             "cwd": "${workspaceFolder}"
-        }
+        },
+        
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Test_debug",
+            "program": "${workspaceFolder}/src/build/Debug/test/test",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+
     ]
 }

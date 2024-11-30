@@ -1,6 +1,9 @@
 #ifndef __OBJECT_H__
 #define __OBJECT_H__
 
+#include <fstream>
+#include <sstream>
+#include <string>
 #include <vector>
 
 #include "Surface.hpp"
@@ -8,15 +11,12 @@
 
 namespace s21 {
 class Object {
+ private:
   std::vector<s21::Vertex> vertices;
-  std::vector<s21::Surface> vertices;
+  std::vector<s21::Surface> surfaces;
+
  public:
-  Object();
-  Object(const Object& other);
-  Object(Object&& other);
-  Object& operator=(const Object& other);
-  Object& operator=(Object&& other);
-  ~Object() = default;
+  static Object load_obj(std::string path);
 };
 }  // namespace s21
 

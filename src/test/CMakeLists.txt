@@ -10,16 +10,16 @@ if(NOT GTest_FOUND)
 
   set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
   FetchContent_MakeAvailable(googletest)
-  file(GLOB_RECURSE TEST_FILES "*.cpp" "*.c" "*.h")
+  file(GLOB_RECURSE TEST_FILES "*.cpp" "*.c" "*.h" "*.hpp")
 endif()
 
 
 set (TEST_FILES "" CACHE STRING "")
-file(GLOB_RECURSE TEST_FILES "*.cpp" "*.c" "*.h" )
+file(GLOB_RECURSE TEST_FILES "*.cpp" "*.c" "*.h" "*.hpp" )
 
 
 SET(TEST_FLAGS ${SRC_FLAGS})
-SET(TEST_LIB -lm GTest::gtest GTest::gtest_main -pthread -lgcov)
+SET(TEST_LIB ${TEST_LIB} -lm GTest::gtest GTest::gtest_main -lcheck -lsubunit -pthread -lgcov)
 IF(UNIX)
     SET(TEST_FLAGS ${TEST_FLAGS} -fprofile-arcs -ftest-coverage -g)
 endif()
