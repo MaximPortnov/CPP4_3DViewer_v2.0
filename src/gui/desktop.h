@@ -12,6 +12,9 @@
 #include <qt6/QtWidgets/QTableWidgetItem>
 #include <qt6/QtWidgets/QVBoxLayout>
 #include <qt6/QtWidgets/QWidget>
+#include <qt6/QtOpenGLWidgets/QOpenGLWidget>
+
+#include <GL/gl.h>
 
 #include <array>
 #include <functional>

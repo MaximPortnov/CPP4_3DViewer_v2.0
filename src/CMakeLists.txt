@@ -16,22 +16,26 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 11)
 set(BUILD_SHARED_LIBS YES)
 
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
 
 if(WIN32)
     add_compile_options(/permissive-)
 endif()
 
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+
 # LIBS
 if(WIN32)
     find_package(Qt6 )
-    SET(DESKTOP_LIB qt::qt)
+    SET(DESKTOP_LIB qt::qt )
 elseif(UNIX)
-    find_package(Qt6 COMPONENTS Widgets REQUIRED)
-    SET(DESKTOP_LIB Qt6::Widgets)
+    find_package(Qt6 COMPONENTS Widgets OpenGL OpenGLWidgets REQUIRED)
+    SET(DESKTOP_LIB Qt6::Widgets Qt6::OpenGL Qt6::OpenGLWidgets)
 endif()
 
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
+
 
 
 SET(MAIN_LIB ${MAIN_LIB} )
@@ -58,7 +62,7 @@ message(
 # file(GLOB_RECURSE TETRIS_LOGICAL_FILES "brick_game/tetris/*.c")
 file(GLOB_RECURSE CORE_FILES "core/*.cpp")
 
-file(GLOB_RECURSE DESKTOP_FILES "gui/*.cpp" "gui/*.ui")
+file(GLOB_RECURSE DESKTOP_FILES "gui/*.cpp" "gui/*.h" "gui/*.ui")
 
 # file(GLOB_RECURSE CONTROL_FILES "control/main.cpp")
 
