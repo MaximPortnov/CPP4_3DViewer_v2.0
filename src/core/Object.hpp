@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <array>
 
 #include "Surface.hpp"
 #include "Vertex.hpp"

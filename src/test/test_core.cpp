@@ -4,6 +4,7 @@ TEST(core_test, load_obj) {
   std::cout << path << '\n';
 
   auto obj = s21::Object::load_obj(path + "../obj_files/cube.obj");
+  
   for (auto& el : obj.vertices){
     std::cout << "v " << el.X << ' ' << el.Y << ' ' << el.Z << '\n';
   }
