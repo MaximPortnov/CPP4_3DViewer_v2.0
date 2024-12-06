@@ -1,11 +1,14 @@
 #ifndef __OBJECT_H__
 #define __OBJECT_H__
 
+
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <vector>
 #include <array>
+
+#include <QtOpenGL>
 
 #include "Surface.hpp"
 #include "Vertex.hpp"
@@ -18,6 +21,7 @@ class Object {
 
  public:
   static Object load_obj(std::string path);
+  void render();
 };
 }  // namespace s21
 

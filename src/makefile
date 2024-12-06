@@ -105,6 +105,10 @@ debug: build_debug
 	${CMAKE_BUILD_DEBUG_TARGET} ${DEBUG_TARGET}
 	${DEBUG_EXE}
 
+debug_build: 
+	${CMAKE_BUILD_DEBUG_TARGET} ${DEBUG_TARGET}
+	${DEBUG_EXE}
+
 valgrind_debug: build_debug
 	${CMAKE_BUILD_DEBUG_TARGET} ${DEBUG_TARGET}
 	valgrind $(FLAG_VALGRIND) ${DEBUG_EXE}

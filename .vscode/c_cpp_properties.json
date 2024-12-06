@@ -5,7 +5,9 @@
       "includePath": [
         "${workspaceFolder}/**",
         "${workspaceFolder}/src/build/Release/3DViewer_v2_autogen/include/**",
-        "${workspaceFolder}/src/build/Debug/3DViewer_v2_autogen/include/**"
+        "/usr/include/x86_64-linux-gnu/qt6/**",
+        "/usr/include/x86_64-linux-gnu/qt6/**/**",
+        "${workspaceFolder}/src/build/Debug/3DViewer_v2_autogen/include/**",
       ],
       "defines": [],
       "compilerPath": "/usr/bin/gcc",

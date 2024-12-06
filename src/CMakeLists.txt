@@ -23,8 +23,8 @@ if(WIN32)
     add_compile_options(/permissive-)
 endif()
 
-find_package(OpenGL REQUIRED)
-find_package(GLUT REQUIRED)
+# find_package(OpenGL REQUIRED)
+# find_package(GLUT REQUIRED)
 
 # LIBS
 if(WIN32)
@@ -32,13 +32,13 @@ if(WIN32)
     SET(DESKTOP_LIB qt::qt )
 elseif(UNIX)
     find_package(Qt6 COMPONENTS Widgets OpenGL OpenGLWidgets REQUIRED)
-    SET(DESKTOP_LIB Qt6::Widgets Qt6::OpenGL Qt6::OpenGLWidgets)
+    SET(DESKTOP_LIB Qt6::Widgets Qt6::OpenGL Qt6::OpenGLWidgets core)
 endif()
 
 
 
 
-SET(MAIN_LIB ${MAIN_LIB} )
+SET(MAIN_LIB ${MAIN_LIB} Qt6::OpenGL)
 SET(TEST_LIB ${MAIN_LIB} core)
 
 # FLAGS

@@ -6,6 +6,9 @@
 #include <QOpenGLContext>
 #include <QOpenGLShaderProgram>
 #include <QTimer>
+
+#include "../core/Object.hpp"
+
 // #include <qt6/QOpenGLFunctions>
 // #include <QMatrix4x4>
 // #include <QVector3D>
@@ -26,6 +29,7 @@ protected:
 private:
     float rotationX = 0.0f;
     float rotationY = 0.0f;
+    s21::Object obj;
 };
 
 #endif // MYWIDGET_H

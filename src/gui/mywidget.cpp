@@ -1,7 +1,10 @@
 #include "mywidget.h"
 
+
 MyWidget::MyWidget(QWidget *parent) : QOpenGLWidget(parent) {
 startTimer(16);
+qDebug() << QCoreApplication::applicationDirPath();
+  obj = s21::Object::load_obj(QCoreApplication::applicationDirPath().toStdString() + "/obj_files/monkey.obj");
 }
 
 void MyWidget::initializeGL() {
@@ -42,16 +45,17 @@ void MyWidget::paintGL() {
   glRotatef(rotationY, 0.0f, 1.0f, 0.0f);  // Вращение по Y
 
   // Рисование куба
-  glBegin(GL_QUADS);
-  glColor3f(1.0f, 0.0f, 0.0f);
-  glVertex3f(-1.0f, -1.0f, -1.0f);  // Пример вершины
-  glColor3f(0.0f, 1.0f, 0.0f);
-  glVertex3f(1.0f, -1.0f, -1.0f);
-  glColor3f(0.0f, 0.0f, 1.0f);
-  glVertex3f(1.0f, 1.0f, -1.0f);
-  glColor3f(1.0f, 1.0f, 0.0f);
-  glVertex3f(-1.0f, 1.0f, -1.0f);
-  glEnd();
+  // glBegin(GL_QUADS);
+  // obj.render();
+  // glColor3f(1.0f, 0.0f, 0.0f);
+  // glVertex3f(-1.0f, -1.0f, -1.0f);  // Пример вершины
+  // glColor3f(0.0f, 1.0f, 0.0f);
+  // glVertex3f(1.0f, -1.0f, -1.0f);
+  // glColor3f(0.0f, 0.0f, 1.0f);
+  // glVertex3f(1.0f, 1.0f, -1.0f);
+  // glColor3f(1.0f, 1.0f, 0.0f);
+  // glVertex3f(-1.0f, 1.0f, -1.0f);
+  // glEnd();
           rotationX += 1.0f;  // Вращение по X
         rotationY += 1.f;  // Вращение по Y
 }

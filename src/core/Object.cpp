@@ -39,13 +39,26 @@ Object Object::load_obj(std::string path) {
       auto f2_split = split(f2, "/");
       auto f3_split = split(f3, "/");
       s21::Surface surface;
-      surface.first.vertex_index = std::stoi(f1_split[0]);
-      surface.second.vertex_index = std::stoi(f2_split[0]);
-      surface.third.vertex_index = std::stoi(f3_split[0]);
+      surface.nodes[0].vertex_index = std::stoi(f1_split[0]);
+      surface.nodes[1].vertex_index = std::stoi(f2_split[0]);
+      surface.nodes[2].vertex_index = std::stoi(f3_split[0]);
       res.surfaces.push_back(surface);
     }
   }
   object_file.close();
   return res;
+}
+
+void Object::render() {
+  glBegin(GL_LINES);
+  for (const auto& el : surfaces) {
+    glColor3d(0, 1, 0);
+    for (int i = 0; i < 3; i++) {
+      const auto& temp = vertices[el.nodes[i].vertex_index-1];
+      glVertex3d(temp.X, temp.Y, temp.Z);
+    }
+    // el.nodes
+  }
+  glEnd();
 }
 }  // namespace s21

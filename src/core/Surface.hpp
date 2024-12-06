@@ -11,9 +11,7 @@ struct Surface {
   };
 
  public:
-  Node first;
-  Node second;
-  Node third;
+  std::array<Node, 3> nodes;
 };
 
 }  // namespace s21
