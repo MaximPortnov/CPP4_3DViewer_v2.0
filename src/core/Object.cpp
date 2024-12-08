@@ -52,7 +52,7 @@ Object Object::load_obj(std::string path) {
 void Object::render() {
   glBegin(GL_LINES);
   for (const auto& el : surfaces) {
-    glColor3d(0, 1, 0);
+    glColor3d(1, 0, 0);
     for (int i = 0; i < 3; i++) {
       const auto& temp = vertices[el.nodes[i].vertex_index-1];
       glVertex3d(temp.X, temp.Y, temp.Z);

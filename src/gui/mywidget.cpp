@@ -4,7 +4,7 @@
 MyWidget::MyWidget(QWidget *parent) : QOpenGLWidget(parent) {
 startTimer(16);
 qDebug() << QCoreApplication::applicationDirPath();
-  obj = s21::Object::load_obj(QCoreApplication::applicationDirPath().toStdString() + "/obj_files/monkey.obj");
+  obj = s21::Object::load_obj(QCoreApplication::applicationDirPath().toStdString() + "/obj_files/monkey.obj_test");
 }
 
 void MyWidget::initializeGL() {
@@ -46,7 +46,7 @@ void MyWidget::paintGL() {
 
   // Рисование куба
   // glBegin(GL_QUADS);
-  // obj.render();
+  obj.render();
   // glColor3f(1.0f, 0.0f, 0.0f);
   // glVertex3f(-1.0f, -1.0f, -1.0f);  // Пример вершины
   // glColor3f(0.0f, 1.0f, 0.0f);
