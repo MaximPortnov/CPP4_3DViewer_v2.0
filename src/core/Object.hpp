@@ -20,7 +20,7 @@ class Object {
   std::vector<s21::Surface> surfaces;
 
  public:
-  static Object load_obj(std::string path);
+  static Object load_obj(const std::string& path);
   void render();
 };
 }  // namespace s21

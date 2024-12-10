@@ -17,7 +17,7 @@ std::vector<std::string> split(std::string_view str,
 }  // namespace
 
 namespace s21 {
-Object Object::load_obj(std::string path) {
+Object Object::load_obj(const std::string& path) {
   Object res;
   std::ifstream object_file(path);
   if (!object_file.is_open()) {
@@ -50,6 +50,7 @@ Object Object::load_obj(std::string path) {
 }
 
 void Object::render() {
+  
   glBegin(GL_LINES);
   for (const auto& el : surfaces) {
     glColor3d(1, 0, 0);

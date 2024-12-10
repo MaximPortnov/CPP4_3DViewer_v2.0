@@ -8,6 +8,8 @@
 #include <QTimer>
 
 #include "../core/Object.hpp"
+#include "../core/Scene.hpp"
+#include "../core/TransformMatrix.hpp"
 
 // #include <qt6/QOpenGLFunctions>
 // #include <QMatrix4x4>
@@ -29,7 +31,7 @@ protected:
 private:
     float rotationX = 0.0f;
     float rotationY = 0.0f;
-    s21::Object obj;
+    s21::Scene scene;
 };
 
 #endif // MYWIDGET_H

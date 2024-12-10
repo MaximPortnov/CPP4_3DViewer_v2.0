@@ -23,6 +23,8 @@ if(WIN32)
     add_compile_options(/permissive-)
 endif()
 
+
+
 # find_package(OpenGL REQUIRED)
 # find_package(GLUT REQUIRED)
 
@@ -74,7 +76,7 @@ file(GLOB_RECURSE DESKTOP_FILES "gui/*.cpp" "gui/*.h" "gui/*.ui")
 # create_library(snake FILES ${SNAKE_LOGICAL_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB})
 # create_library(snake_test FILES ${SNAKE_LOGICAL_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} DEFS MYDEBUG)
 
-create_library(core FILES ${CORE_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} )
+create_library(core FILES ${CORE_FILES} FLAGS ${MAIN_FLAGS} -g LIBS ${MAIN_LIB})
 
 
 create_target(${PROJECT_NAME} FILES ${DESKTOP_FILES} FLAGS ${MAIN_FLAGS} LIBS ${DESKTOP_LIB})

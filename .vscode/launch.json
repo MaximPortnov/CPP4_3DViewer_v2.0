@@ -10,7 +10,7 @@
             "name": "Debug",
             "program": "${workspaceFolder}/src/build/Debug/3DViewer_v2",
             "args": [],
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
         },
         
         {

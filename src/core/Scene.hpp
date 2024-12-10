@@ -6,13 +6,15 @@
 
 namespace s21 {
 class Scene {
-  s21::Object Object;
-  s21::TransformMatrix main_matrix;
-  s21::TransformMatrix loop_matrix;
+  s21::Object _object;
+  s21::TransformMatrix _matrix;
+  bool _transform_loop = false;
   public:
+  void load_obj(const std::string& path);
   void render();
-  void transform();
-  void transform_loop();
+  void transform(TransformMatrix matrix);
+  void transform_loop_begin();
+  void transform_loop_end();
 };
 }  // namespace s21
 #endif  // __SCENE_H__

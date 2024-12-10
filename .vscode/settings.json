@@ -78,6 +78,10 @@
         "codecvt": "cpp",
         "qmainwindow": "cpp",
         "qopenglwidget": "cpp",
-        "qopenglfunctions_1_0": "cpp"
+        "qopenglfunctions_1_0": "cpp",
+        "qtopengl": "cpp",
+        "source_location": "cpp",
+        "cinttypes": "cpp",
+        "qtopenglversion": "cpp"
     }
 }
