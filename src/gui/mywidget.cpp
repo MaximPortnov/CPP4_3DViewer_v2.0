@@ -6,15 +6,18 @@ startTimer(16);
 qDebug() << QCoreApplication::applicationDirPath();
   // obj = s21::Object::load_obj();
   scene.load_obj(QCoreApplication::applicationDirPath().toStdString() + "/obj_files/monkey.obj_test");
+  
   s21::TransformMatrixBuilder builder;
-  auto t = builder.translate(0.,0.,-5.).scale(1.,1.9,1.0).rotate(45, 0,1,0).build();
+  auto t = builder.translate(0,0,0).scale(1.,1.9,1.0).rotate(45, 0,1,0).build();
   scene.transform(t);
   
   s21::TransformMatrixBuilder builder1;
-  auto t1 = builder1.rotate(45, 0,1,0).build();
-  scene.transform_loop_begin(t1);
-
+  auto t1 = builder1.rotate(5, 0,1,0).build();
+  scene.animate_start(t1);
   
+  s21::TransformMatrixBuilder builder2;
+  auto t2 = builder2.translate(0.5,0.,-5.).build();
+  scene.set_view(t2);
 }
 
 void MyWidget::initializeGL() {

@@ -1,13 +1,47 @@
 #include "TransformMatrix.hpp"
 
 namespace s21 {
+const double* Matrix4x4::operator[](std::size_t index) const {
+  return matrix.data() + index * 4;
+}
+
+double* Matrix4x4::operator[](std::size_t index) {
+  return matrix.data() + index * 4;
+}
+
 Matrix4x4::Matrix4x4() {
   matrix = {{
-      {{1, 0, 0, 0}},
-      {{0, 1, 0, 0}},
-      {{0, 0, 1, 0}},
-      {{0, 0, 0, 1}},
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
   }};
+}
+
+Matrix4x4::Matrix4x4(const Matrix4x4& other) { matrix = other.matrix; }
+
+Matrix4x4::Matrix4x4(Matrix4x4&& other) { matrix = std::move(other.matrix); }
+
+Matrix4x4& Matrix4x4::operator=(const Matrix4x4& other) {
+  matrix = other.matrix;
+  return *this;
+}
+
+Matrix4x4& Matrix4x4::operator=(Matrix4x4&& other) {
+  matrix = std::move(other.matrix);
+  return *this;
 }
 
 Matrix4x4& Matrix4x4::dot(const Matrix4x4& other) {
@@ -17,14 +51,12 @@ Matrix4x4& Matrix4x4::dot(const Matrix4x4& other) {
 
 Matrix4x4 Matrix4x4::dot(const Matrix4x4& first, const Matrix4x4& second) {
   Matrix4x4 res;
-  res.matrix = {{{{0., 0., 0., 0.}},
-                 {{0., 0., 0., 0.}},
-                 {{0., 0., 0., 0.}},
-                 {{0., 0., 0., 0.}}}};
+  res.matrix = {
+      {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.}};
   for (int i = 0; i < 4; ++i) {
     for (int j = 0; j < 4; ++j) {
       for (int k = 0; k < 4; ++k) {
-        res.matrix[i][j] += first.matrix[i][k] * second.matrix[k][j];
+        res[i][j] += first[i][k] * second[k][j];
       }
     }
   }
@@ -32,7 +64,7 @@ Matrix4x4 Matrix4x4::dot(const Matrix4x4& first, const Matrix4x4& second) {
 }
 
 TransformMatrix::TransformMatrix(const TransformMatrix& other) {
-  matrix = other.matrix;
+  _matrix = other._matrix;
   // for (int i = 0; i < 16; ++i){
   //   matrix[i] = other.matrix[i];
   // }
@@ -43,7 +75,7 @@ TransformMatrix::TransformMatrix(const TransformMatrix& other) {
 // }
 
 TransformMatrix::TransformMatrix(TransformMatrix&& other) {
-  matrix = std::move(other.matrix);
+  _matrix = std::move(other._matrix);
   //   for (int i = 0; i < 16; ++i){
   //   matrix[i] = other.matrix[i];
   // }
@@ -53,12 +85,12 @@ TransformMatrix& TransformMatrix::operator=(const TransformMatrix& other) {
   //   for (int i = 0; i < 16; ++i){
   //   matrix[i] = other.matrix[i];
   // }
-  matrix = other.matrix;
+  _matrix = other._matrix;
   return *this;
 }
 
 TransformMatrix& TransformMatrix::operator=(TransformMatrix&& other) {
-  matrix = std::move(other.matrix);
+  _matrix = std::move(other._matrix);
   // for (int i = 0; i < 16; ++i){
   //   matrix[i] = other.matrix[i];
   // }
@@ -77,20 +109,17 @@ TransformMatrix& TransformMatrix::operator=(TransformMatrix&& other) {
 //   return res;
 // }
 
-void TransformMatrix::load_matrix() { 
-  glLoadMatrixd(matrix.data()); 
-}
+void TransformMatrix::load_matrix() { glMultMatrixd(_matrix.matrix.data()); }
 
-void TransformMatrix::mult_matrix()
-{
-  glMultMatrixd(matrix.data());
+void TransformMatrix::mult_matrix(const TransformMatrix& matrix) {
+  _matrix.dot(matrix._matrix);
 }
 TransformMatrixBuilder& TransformMatrixBuilder::scale(double sx, double sy,
                                                       double sz) {
   Matrix4x4 temp;
-  temp.matrix[0][0] *= sx;
-  temp.matrix[1][1] *= sy;
-  temp.matrix[2][2] *= sz;
+  temp[0][0] *= sx;
+  temp[1][1] *= sy;
+  temp[2][2] *= sz;
   matrix.dot(temp);
   return *this;
 }
@@ -98,9 +127,9 @@ TransformMatrixBuilder& TransformMatrixBuilder::scale(double sx, double sy,
 TransformMatrixBuilder& TransformMatrixBuilder::translate(double tx, double ty,
                                                           double tz) {
   Matrix4x4 temp;
-  temp.matrix[0][3] += tx;
-  temp.matrix[1][3] += ty;
-  temp.matrix[2][3] += tz;
+  temp[0][3] += tx;
+  temp[1][3] += ty;
+  temp[2][3] += tz;
   matrix.dot(temp);
   return *this;
 }
@@ -123,11 +152,10 @@ TransformMatrixBuilder& TransformMatrixBuilder::rotate(double angle, double x,
 
   // Матрица вращения
 
-  temp.matrix = {
-      {{{t * x * x + cosA, t * x * y - z * sinA, t * x * z + y * sinA, 0.}},
-       {{t * x * y + z * sinA, t * y * y + cosA, t * y * z - x * sinA, 0.}},
-       {{t * x * z - y * sinA, t * y * z + x * sinA, t * z * z + cosA, 0.}},
-       {{0., 0., 0., 1.}}}};
+  temp.matrix = {{t * x * x + cosA, t * x * y - z * sinA, t * x * z + y * sinA,
+                  0., t * x * y + z * sinA, t * y * y + cosA,
+                  t * y * z - x * sinA, 0., t * x * z - y * sinA,
+                  t * y * z + x * sinA, t * z * z + cosA, 0., 0., 0., 0., 1.}};
 
   matrix.dot(temp);
   return *this;
@@ -137,7 +165,7 @@ TransformMatrix TransformMatrixBuilder::build() {
   TransformMatrix res;
   for (int i = 0; i < 4; ++i) {
     for (int j = 0; j < 4; ++j) {
-      res.matrix[i * 4 + j] = matrix.matrix[j][i];
+      res._matrix[i][j] = matrix[j][i];
     }
   }
   return res;

@@ -6,21 +6,25 @@ void Scene::load_obj(const std::string& path) {
 }
 
 void Scene::render() {
-  if (!_transform_loop) {
-    _matrix.load_matrix();
-  } else {
-    _matrix_loop.mult_matrix();
+  if (_transform_loop) {
+    _matrix.mult_matrix(_matrix_animate);
   }
-
+  glPushMatrix();
+  glLoadIdentity();
+  _matrix_view.load_matrix();
+  _matrix.load_matrix();
   _object.render();
+  glPopMatrix();
 }
 
 void Scene::transform(TransformMatrix matrix) { _matrix = matrix; }
 
-void Scene::transform_loop_begin(TransformMatrix matrix) {
-  _matrix_loop = matrix;
+void Scene::animate_start(TransformMatrix matrix) {
+  _matrix_animate = matrix;
   _transform_loop = true;
 }
 
-void Scene::transform_loop_end() { _transform_loop = false; }
+void Scene::animate_stop() { _transform_loop = false; }
+
+void Scene::set_view(TransformMatrix matrix) { _matrix_view = matrix; }
 }  // namespace s21
