@@ -33,6 +33,8 @@ class TransformMatrix {
 
  private:
   void load_matrix();
+  void mult_matrix();
+  
   friend class s21::Object;
   friend class s21::Scene;
   friend class TransformMatrixBuilder;

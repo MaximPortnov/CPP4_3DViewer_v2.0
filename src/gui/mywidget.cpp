@@ -10,6 +10,11 @@ qDebug() << QCoreApplication::applicationDirPath();
   auto t = builder.translate(0.,0.,-5.).scale(1.,1.9,1.0).rotate(45, 0,1,0).build();
   scene.transform(t);
   
+  s21::TransformMatrixBuilder builder1;
+  auto t1 = builder1.rotate(45, 0,1,0).build();
+  scene.transform_loop_begin(t1);
+
+  
 }
 
 void MyWidget::initializeGL() {

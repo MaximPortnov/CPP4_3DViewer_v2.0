@@ -8,12 +8,13 @@ namespace s21 {
 class Scene {
   s21::Object _object;
   s21::TransformMatrix _matrix;
+  s21::TransformMatrix _matrix_loop;
   bool _transform_loop = false;
   public:
   void load_obj(const std::string& path);
   void render();
   void transform(TransformMatrix matrix);
-  void transform_loop_begin();
+  void transform_loop_begin(TransformMatrix matrix);
   void transform_loop_end();
 };
 }  // namespace s21

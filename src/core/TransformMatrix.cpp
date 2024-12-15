@@ -80,6 +80,11 @@ TransformMatrix& TransformMatrix::operator=(TransformMatrix&& other) {
 void TransformMatrix::load_matrix() { 
   glLoadMatrixd(matrix.data()); 
 }
+
+void TransformMatrix::mult_matrix()
+{
+  glMultMatrixd(matrix.data());
+}
 TransformMatrixBuilder& TransformMatrixBuilder::scale(double sx, double sy,
                                                       double sz) {
   Matrix4x4 temp;
