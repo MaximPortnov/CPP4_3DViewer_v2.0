@@ -1,0 +1,121 @@
+#include "desktop.h"
+#include "./ui_mainwindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+
+    mW = new MyWidget(ui->widget);
+    ui->widget->setLayout(new QVBoxLayout());
+    ui->widget->layout()->addWidget(mW);
+
+    QPixmap pix(":/resource/img/log2.png");
+    int w = ui->image->width();
+    int h = ui->image->height();
+
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+    delete mW;
+}
+
+void MainWindow::updateStatusBar(QString &fileName, int vertexCount, int surfaceCount)
+{
+    QString message = QString("Название файла: %1 | Количество вершин: %2 | Количество рёбер: %3")
+                          .arg(fileName)
+                          .arg(vertexCount)
+                          .arg(surfaceCount);
+
+    ui->statusbar->showMessage(message);
+}
+
+void MainWindow::on_action_triggered()
+{
+    QString path = QCoreApplication::applicationDirPath() + "/../3d объекты";
+    QString fileName = QFileDialog::getOpenFileName(this, "Выбрать файл", path, "All Files (*.obj)");
+    updateStatusBar(fileName, 2, 2);
+    mW->loadOBJ(fileName);
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QString path = QCoreApplication::applicationDirPath() + "/../3d объекты";
+    mW->saveImage(path);
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+
+    QString path = QCoreApplication::applicationDirPath() + "/../3d объекты";
+    QString fileName = QFileDialog::getSaveFileName(this, "Сохранить gif", path, "(*.gif)");
+    mW->startGifRecording(fileName); // 5 секунд, 10 кадров в секунду
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    mW->chooseBackgroundColor();
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    mW->chooseEdgeColor();
+}
+
+
+void MainWindow::on_comboBox_currentIndexChanged(int index)
+{
+    if (index == 0) {
+        mW->setProjectionType(Central);
+    } else if (index == 1) {
+        mW->setProjectionType(Parallel);
+    }
+}
+
+void MainWindow::on_comboBox_2_currentIndexChanged(int index)
+{
+    if (index == 0) {
+        mW->setLineType(Solid);
+    } else if (index == 1) {
+        mW->setLineType(Dotted);
+    }
+}
+
+
+void MainWindow::on_spinBox_10_valueChanged(int arg1)
+{
+    mW->setLineWidht(arg1);
+}
+
+
+void MainWindow::on_comboBox_3_currentIndexChanged(int index)
+{
+    if (index == 0) {
+        mW->setVertexType(None);
+    } else if (index == 1) {
+        mW->setVertexType(Circle);
+    } else if (index == 2) {
+        mW->setVertexType(Square);
+    }
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    mW->chooseVertexColor();
+}
+
+
+void MainWindow::on_spinBox_11_valueChanged(int arg1)
+{
+    mW->setVertexWidht(arg1);
+}
+

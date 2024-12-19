@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+ab4f264830f6dccfef2bb9c09fc398cd CMakeFiles/s21_BrickGame_autogen
+be2440e653b5a0be8d31433c83f03bf6 s21_BrickGame_autogen/EWIEGA46WW/qrc_resources.cpp
+a799e19a680942f06a8d09310d69addf third_party/QtGifImage/CMakeFiles/QtGifImage_autogen
