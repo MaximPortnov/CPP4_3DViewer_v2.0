@@ -84,3 +84,5 @@ create_target(${PROJECT_NAME} FILES ${DESKTOP_FILES} FLAGS ${MAIN_FLAGS} LIBS ${
 # create_target(s21_BrickGame FILES ${CONTROL_FILES} ${MOC_SOURCES} ${UI_HEADERS}  FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} tetris snake cli desktop)
 
 add_subdirectory("test")
+add_subdirectory(third_party/QtGifImage)
+target_link_libraries(QtGifImage::QtGifImage);

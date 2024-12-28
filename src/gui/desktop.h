@@ -1,56 +1,51 @@
-#ifndef __DESKTOP_H__
-#define __DESKTOP_H__
+#ifndef DESKTOP_H
+#define DESKTOP_H
 
-#include <qt6/QtCore/QRandomGenerator>
-#include <qt6/QtCore/QTimerEvent>
-#include <qt6/QtCore/QtDebug>
-#include <qt6/QtGui/QKeyEvent>
-#include <qt6/QtWidgets/QApplication>
-#include <qt6/QtWidgets/QLabel>
-#include <qt6/QtWidgets/QMainWindow>
-#include <qt6/QtWidgets/QPushButton>
-#include <qt6/QtWidgets/QTableWidgetItem>
-#include <qt6/QtWidgets/QVBoxLayout>
-#include <qt6/QtWidgets/QWidget>
-#include <qt6/QtOpenGLWidgets/QOpenGLWidget>
+#include <QMainWindow>
+#include <QFileDialog>
+#include <QPixmap>
+#include "mywidget.h"
 
-#include <GL/gl.h>
-
-#include <array>
-#include <functional>
-#include <iostream>
-
-
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
 }
+QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow {
-  Q_OBJECT
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
 
- public:
-  explicit MainWindow(QWidget *parent = 0);
-  void nextHide();
-  ~MainWindow();
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
- private:
-  QLabel *scoreLabel;
-  QLabel *highScoreLabel;
-  QLabel *levelLabel;
-  QLabel *speedLabel;
-  QLabel *pauseLabel;
-  int signal;
-  QLabel *startLabel_;
-  QLabel *gameOverLabel_;
-  QLabel *pauseLabel_;
-  QLabel *victoryLabel_;
-  std::array<QColor, 11> colors = {
-       Qt::white, Qt::red,   Qt::green,  Qt::yellow, Qt::blue,  Qt::magenta,
-      Qt::cyan,  Qt::black, Qt::yellow, Qt::white,  Qt::yellow};
-  Ui::MainWindow *ui;
+private slots:
+    void updateStatusBar(QString &fileName, int vertexCount, int surfaceCount);
+    void on_action_triggered();
 
-  void keyPressEvent(QKeyEvent *event) override;
-  void keyReleaseEvent(QKeyEvent *event) override;
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_comboBox_currentIndexChanged(int index);
+
+    void on_comboBox_2_currentIndexChanged(int index);
+
+    void on_spinBox_10_valueChanged(int arg1);
+
+    void on_comboBox_3_currentIndexChanged(int index);
+
+    void on_pushButton_2_clicked();
+
+    void on_spinBox_11_valueChanged(int arg1);
+
+private:
+    Ui::MainWindow *ui;
+    MyWidget *mW;
 };
-
-#endif  // __DESKTOP_H__
+#endif // DESKTOP_H

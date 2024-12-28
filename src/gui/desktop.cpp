@@ -1,122 +1,106 @@
 #include "desktop.h"
-
-#include <ui_desktop.h>
+#include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow) {
-  ui->setupUi(this);
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
 
-  const int nextRows = 4;
-  const int nextColumns = 4;
+    mW = new MyWidget(ui->widget);
+    ui->widget->setLayout(new QVBoxLayout());
+    ui->widget->layout()->addWidget(mW);
 
-  ui->nextTableWidget->setRowCount(nextRows);
-  ui->nextTableWidget->setColumnCount(nextColumns);
+    QPixmap pix(":/resource/img/log2.png");
+    int w = ui->image->width();
+    int h = ui->image->height();
 
-  ui->nextTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-  ui->nextTableWidget->setSelectionMode(QAbstractItemView::NoSelection);
-  ui->nextTableWidget->setFocusPolicy(Qt::NoFocus);
-  ui->nextTableWidget->horizontalHeader()->setVisible(false);
-  ui->nextTableWidget->verticalHeader()->setVisible(false);
-  ui->nextTableWidget->horizontalHeader()->setSectionResizeMode(
-      QHeaderView::Stretch);
-  ui->nextTableWidget->verticalHeader()->setSectionResizeMode(
-      QHeaderView::Stretch);
-
-  for (int i = 0; i < nextRows; ++i) {
-    ui->nextTableWidget->setRowHeight(i, 20);
-  }
-  for (int j = 0; j < nextColumns; ++j) {
-    ui->nextTableWidget->setColumnWidth(j, 20);
-  }
-
-  for (int i = 0; i < nextRows; ++i) {
-    for (int j = 0; j < nextColumns; ++j) {
-      QTableWidgetItem *item = new QTableWidgetItem();
-      QColor color = QColor::fromRgb(QRandomGenerator::global()->bounded(256),
-                                     QRandomGenerator::global()->bounded(256),
-                                     QRandomGenerator::global()->bounded(256));
-      item->setBackground(color);
-      ui->nextTableWidget->setItem(i, j, item);
-    }
-  }
-
-  const int rows = 20;
-  const int columns = 10;
-
-  ui->tableWidget->setRowCount(rows);
-  ui->tableWidget->setColumnCount(columns);
-
-  ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-  ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
-  ui->tableWidget->setFocusPolicy(Qt::NoFocus);
-  ui->tableWidget->horizontalHeader()->setVisible(false);
-  ui->tableWidget->verticalHeader()->setVisible(false);
-  ui->tableWidget->horizontalHeader()->setSectionResizeMode(
-      QHeaderView::Stretch);
-  ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-  for (int i = 0; i < rows; ++i) {
-    ui->tableWidget->setRowHeight(i, 20);
-  }
-  for (int j = 0; j < columns; ++j) {
-    ui->tableWidget->setColumnWidth(j, 20);
-  }
-
-  for (int i = 0; i < rows; ++i) {
-    for (int j = 0; j < columns; ++j) {
-      QTableWidgetItem *item = new QTableWidgetItem();
-      QColor color = QColor::fromRgb(QRandomGenerator::global()->bounded(256),
-                                     QRandomGenerator::global()->bounded(256),
-                                     QRandomGenerator::global()->bounded(256));
-      item->setBackground(color);
-      ui->tableWidget->setItem(i, j, item);
-    }
-  }
-
-  scoreLabel = new QLabel("0", ui->groupBox);
-  ui->groupBox->layout()->addWidget(scoreLabel);
-
-  highScoreLabel = new QLabel("0", ui->groupBox_2);
-  ui->groupBox_2->layout()->addWidget(highScoreLabel);
-
-  levelLabel = new QLabel("1", ui->groupBox_3);
-  ui->groupBox_3->layout()->addWidget(levelLabel);
-
-  speedLabel = new QLabel("1", ui->groupBox_4);
-  ui->groupBox_4->layout()->addWidget(speedLabel);
-
-  pauseLabel = new QLabel("0", ui->groupBox_5);
-  ui->groupBox_5->layout()->addWidget(pauseLabel);
-
-  startLabel_ = new QLabel("start game", this);
-  startLabel_->setAlignment(Qt::AlignCenter);
-  startLabel_->setStyleSheet(
-      "font-size: 30px; color: green; font-weight: bold;");
-  startLabel_->setGeometry(0, 0, this->width(), this->height());
-
-  gameOverLabel_ = new QLabel("gameOver", this);
-  gameOverLabel_->setAlignment(Qt::AlignCenter);
-  gameOverLabel_->setStyleSheet(
-      "font-size: 30px; color: red; font-weight: bold;");
-  gameOverLabel_->setGeometry(0, 0, this->width(), this->height());
-
-  pauseLabel_ = new QLabel("pause", this);
-  pauseLabel_->setAlignment(Qt::AlignCenter);
-  pauseLabel_->setStyleSheet("font-size: 30px; color: red; font-weight: bold;");
-  pauseLabel_->setGeometry(0, 0, this->width(), this->height());
-
-  victoryLabel_ = new QLabel("asdasasdasdasdasd", this);
-  victoryLabel_->setAlignment(Qt::AlignCenter);
-  victoryLabel_->setStyleSheet(
-      "font-size: 30px; color: yellow; font-weight: bold;");
-  victoryLabel_->setGeometry(0, 0, this->width(), this->height());
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
 }
 
-void MainWindow::nextHide() { ui->groupBox_6->hide(); }
+MainWindow::~MainWindow()
+{
+    delete ui;
+    delete mW;
+}
 
-MainWindow::~MainWindow() { delete ui; }
+void MainWindow::updateStatusBar(QString &fileName, int vertexCount, int surfaceCount)
+{
+    QString message = QString("Название файла: %1 | Количество вершин: %2 | Количество рёбер: %3")
+                          .arg(fileName)
+                          .arg(vertexCount)
+                          .arg(surfaceCount);
 
-void MainWindow::keyPressEvent(QKeyEvent *event) { signal = event->key(); }
+    ui->statusbar->showMessage(message);
+}
 
-void MainWindow::keyReleaseEvent(QKeyEvent *event) { signal = -1; }
+void MainWindow::on_action_triggered()
+{
+    QString path = QCoreApplication::applicationDirPath() + "/../../3d объекты";
+    QString fileName = QFileDialog::getOpenFileName(this, "Выбрать файл", path, "All Files (*.obj)");
+    updateStatusBar(fileName, 2, 2);
+    mW->loadOBJ(fileName);
+}
 
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QString path = QCoreApplication::applicationDirPath() + "/../../3d объекты";
+    mW->saveImage(path);
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+
+    QString path = QCoreApplication::applicationDirPath() + "/../../3d объекты";
+    QString fileName = QFileDialog::getSaveFileName(this, "Сохранить gif", path, "(*.gif)");
+    mW->startGifRecording(fileName);
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    mW->chooseBackgroundColor();
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    mW->chooseEdgeColor();
+}
+
+
+void MainWindow::on_comboBox_currentIndexChanged(int index)
+{
+    mW->indexSetProjectionType(index);
+}
+
+void MainWindow::on_comboBox_2_currentIndexChanged(int index)
+{
+    mW->indexSetLineType(index);
+}
+
+
+void MainWindow::on_spinBox_10_valueChanged(int arg1)
+{
+    mW->setLineWidht(arg1);
+}
+
+
+void MainWindow::on_comboBox_3_currentIndexChanged(int index)
+{
+    mW->indexSetVertexType(index);
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    mW->chooseVertexColor();
+}
+
+
+void MainWindow::on_spinBox_11_valueChanged(int arg1)
+{
+    mW->setVertexWidht(arg1);
+}
