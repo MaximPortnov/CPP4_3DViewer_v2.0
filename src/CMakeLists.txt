@@ -85,4 +85,4 @@ create_target(${PROJECT_NAME} FILES ${DESKTOP_FILES} FLAGS ${MAIN_FLAGS} LIBS ${
 
 add_subdirectory("test")
 add_subdirectory(third_party/QtGifImage)
-target_link_libraries(QtGifImage::QtGifImage);
+target_link_libraries(QtGifImage::QtGifImage)
