@@ -18,6 +18,7 @@ set(BUILD_SHARED_LIBS YES)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 if(WIN32)
     add_compile_options(/permissive-)
@@ -33,8 +34,9 @@ if(WIN32)
     find_package(Qt6 )
     SET(DESKTOP_LIB qt::qt )
 elseif(UNIX)
-    find_package(Qt6 COMPONENTS Widgets OpenGL OpenGLWidgets REQUIRED)
-    SET(DESKTOP_LIB Qt6::Widgets Qt6::OpenGL Qt6::OpenGLWidgets core)
+    find_package(Qt6 REQUIRED COMPONENTS Widgets OpenGL OpenGLWidgets )
+    find_package(OpenGL REQUIRED)
+    SET(DESKTOP_LIB Qt6::Widgets Qt6::Gui Qt6::Core Qt6::OpenGL OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets core)
 endif()
 
 
@@ -75,14 +77,14 @@ file(GLOB_RECURSE DESKTOP_FILES "gui/*.cpp" "gui/*.h" "gui/*.ui")
 # create_library(tetris_test FILES ${TETRIS_LOGICAL_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} DEFS MYDEBUG)
 # create_library(snake FILES ${SNAKE_LOGICAL_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB})
 # create_library(snake_test FILES ${SNAKE_LOGICAL_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} DEFS MYDEBUG)
+add_subdirectory(third_party/QtGifImage)
 
-create_library(core FILES ${CORE_FILES} FLAGS ${MAIN_FLAGS} -g LIBS ${MAIN_LIB})
+create_library(core FILES ${CORE_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} Qt6::Widgets Qt6::Gui Qt6::Core Qt6::OpenGL OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets)
 
 
-create_target(${PROJECT_NAME} FILES ${DESKTOP_FILES} FLAGS ${MAIN_FLAGS} LIBS ${DESKTOP_LIB})
+include_directories(exe "./third_party/QtGifImage/include/")
+create_target(exe FILES ${DESKTOP_FILES} FLAGS ${MAIN_FLAGS} LIBS ${DESKTOP_LIB} QtGifImage::QtGifImage)
 
 # create_target(s21_BrickGame FILES ${CONTROL_FILES} ${MOC_SOURCES} ${UI_HEADERS}  FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} tetris snake cli desktop)
 
 add_subdirectory("test")
-add_subdirectory(third_party/QtGifImage)
-target_link_libraries(QtGifImage::QtGifImage)

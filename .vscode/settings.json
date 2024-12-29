@@ -82,6 +82,8 @@
         "qtopengl": "cpp",
         "source_location": "cpp",
         "cinttypes": "cpp",
-        "qtopenglversion": "cpp"
+        "qtopenglversion": "cpp",
+        "qcolordialog": "cpp",
+        "qmessagebox": "cpp"
     }
 }
