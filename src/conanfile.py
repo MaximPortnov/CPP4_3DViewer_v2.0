@@ -20,6 +20,7 @@ class CompressorRecipe(ConanFile):
     def requirements(self):
         # self.requires("sqlite3/3.46.1")
         self.requires("qt/6.6.3")
+        self.requires("opengl/system")
 
     def layout(self):
         cmake_layout(self)
@@ -39,8 +40,8 @@ class CompressorRecipe(ConanFile):
                 
                 copy(self, "*", includedir, os.path.join(self.source_folder, "include"))
                 
-            if self.settings.os == "Windows":
-               copy(self, "ncursesw/ncurses.h", dependency.cpp_info.includedirs[0], os.path.join(self.source_folder, "include"))
+            # if self.settings.os == "Windows":
+            #    copy(self, "ncursesw/ncurses.h", dependency.cpp_info.includedirs[0], os.path.join(self.source_folder, "include"))
                
     def test(self):
         if can_run(self):

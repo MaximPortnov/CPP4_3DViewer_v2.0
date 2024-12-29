@@ -31,12 +31,23 @@ endif()
 
 # LIBS
 if(WIN32)
-    find_package(Qt6 )
-    SET(DESKTOP_LIB qt::qt )
+    # find_package(Qt6 )
+    # find_package(OpenGL REQUIRED)
+    # SET(DESKTOP_LIB qt::qt OpenGL::GL OpenGL::GLU)
+    find_package(OpenGL REQUIRED)
+    find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets OpenGL)
+    SET(DESKTOP_LIB             Qt6::Core Qt6::Gui OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets Qt6::Widgets core)
+    SET(MAIN_LIB ${MAIN_LIB}    Qt6::Core Qt6::Gui OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets Qt6::Widgets Qt6::OpenGL)
+    
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    include_directories(${Qt6Widgets_INCLUDE_DIRS})
+    include_directories(${Qt6OpenGL_INCLUDE_DIRS})
 elseif(UNIX)
     find_package(Qt6 REQUIRED COMPONENTS Widgets OpenGL OpenGLWidgets )
     find_package(OpenGL REQUIRED)
-    SET(DESKTOP_LIB Qt6::Widgets Qt6::Gui Qt6::Core Qt6::OpenGL OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets core)
+    SET(DESKTOP_LIB Qt6::Widgets Qt6::Core Qt6::Gui Qt6::OpenGL OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets core)
+    SET(MAIN_LIB ${MAIN_LIB} Qt6::Core Qt6::Gui OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets Qt6::Widgets Qt6::OpenGL)
+    include_directories(${Qt6OpenGL_INCLUDE_DIRS})
 endif()
 
 
@@ -66,7 +77,7 @@ message(
 # file(GLOB_RECURSE TETRIS_LOGICAL_FILES "brick_game/tetris/*.c")
 file(GLOB_RECURSE CORE_FILES "core/*.cpp")
 
-file(GLOB_RECURSE DESKTOP_FILES "gui/*.cpp" "gui/*.h" "gui/*.ui")
+file(GLOB_RECURSE DESKTOP_FILES "gui/*.cpp" "gui/*.ui")
 
 # file(GLOB_RECURSE CONTROL_FILES "control/main.cpp")
 
@@ -79,12 +90,27 @@ file(GLOB_RECURSE DESKTOP_FILES "gui/*.cpp" "gui/*.h" "gui/*.ui")
 # create_library(snake_test FILES ${SNAKE_LOGICAL_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} DEFS MYDEBUG)
 add_subdirectory(third_party/QtGifImage)
 
-create_library(core FILES ${CORE_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} Qt6::Widgets Qt6::Gui Qt6::Core Qt6::OpenGL OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets)
+create_library(core FILES ${CORE_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} )
 
 
-include_directories(exe "./third_party/QtGifImage/include/")
-create_target(exe FILES ${DESKTOP_FILES} FLAGS ${MAIN_FLAGS} LIBS ${DESKTOP_LIB} QtGifImage::QtGifImage)
+include_directories(${PROJECT_NAME} "./third_party/QtGifImage/include/")
+create_target(${PROJECT_NAME} FILES ${DESKTOP_FILES} FLAGS ${MAIN_FLAGS} LIBS ${DESKTOP_LIB} QtGifImage::QtGifImage)
 
 # create_target(s21_BrickGame FILES ${CONTROL_FILES} ${MOC_SOURCES} ${UI_HEADERS}  FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} tetris snake cli desktop)
 
 add_subdirectory("test")
+
+if(WIN32)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:QtGifImage>"
+            $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+    # set(QT_DLL_DIR ${CMAKE_BINARY_DIR}/conan)
+
+    # set(QT_DLLS
+    #     Qt6OpenGLWidgetsd.dll
+    #     Qt6Widgetsd.dll
+    #     Qt6Guid.dll
+    # )
+
+endif()

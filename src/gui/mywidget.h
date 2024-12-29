@@ -1,6 +1,10 @@
 #ifndef MYWIDGET_H
 #define MYWIDGET_H
 
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #include <GL/glu.h>
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>

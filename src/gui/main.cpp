@@ -1,3 +1,8 @@
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+
 #include "desktop.h"
 
 #include <QApplication>

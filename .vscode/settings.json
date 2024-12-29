@@ -84,6 +84,7 @@
         "cinttypes": "cpp",
         "qtopenglversion": "cpp",
         "qcolordialog": "cpp",
-        "qmessagebox": "cpp"
+        "qmessagebox": "cpp",
+        "qvector": "cpp"
     }
 }

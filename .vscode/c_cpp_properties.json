@@ -8,6 +8,7 @@
         "/usr/include/x86_64-linux-gnu/qt6/**",
         "/usr/include/x86_64-linux-gnu/qt6/**/**",
         "${workspaceFolder}/src/build/Debug/3DViewer_v2_autogen/include/**",
+        "${workspaceFolder}/src/third_party/QtGifImage/include/**",
       ],
       "defines": [],
       "compilerPath": "/usr/bin/gcc",

@@ -1,6 +1,8 @@
 #ifndef __MODEL_H__
 #define __MODEL_H__
-
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #include <GL/glu.h>
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
