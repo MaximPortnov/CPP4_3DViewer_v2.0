@@ -21,7 +21,7 @@ Object Object::load_obj(const std::string& path) {
   Object res;
   std::ifstream object_file(path);
   if (!object_file.is_open()) {
-    throw std::runtime_error("Не удалось найти файл");
+    throw std::runtime_error("HelloНе удалось найти файл");
   }
   std::string line;
   while (std::getline(object_file, line)) {
@@ -51,9 +51,9 @@ Object Object::load_obj(const std::string& path) {
 
 void Object::render() {
   
-  glBegin(GL_LINES);
+  glBegin(GL_TRIANGLES);
   for (const auto& el : surfaces) {
-    glColor3d(1, 0, 0);
+    // glColor3d(1, 0, 0);
     for (int i = 0; i < 3; i++) {
       const auto& temp = vertices[el.nodes[i].vertex_index-1];
       glVertex3d(temp.X, temp.Y, temp.Z);
