@@ -15,6 +15,13 @@ class Controller {
         void clrIndexSetVertexType(const int index);
         void clrChooseVertexColor(const QColor &color);
         void clrSetVertexWidht(const int size);
+        void clrSetTranslateX(int size);
+        void clrSetTranslateY(int size);
+        void clrSetTranslateZ(int size);
+        void clrSetRotateX(int size);
+        void clrSetRotateY(int size);
+        void clrSetRotateZ(int size);
+        void clrSetScale(int size);
 
         void clrProjectionSetup(int w, int h);
         void clrDrawingSettings();

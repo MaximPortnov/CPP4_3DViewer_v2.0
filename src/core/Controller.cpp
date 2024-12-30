@@ -46,6 +46,41 @@ void Controller::clrSetVertexWidht(const int size)
     model.setVertexWidht(size);
 }
 
+void Controller::clrSetTranslateX(int size)
+{
+    model.setTranslateX(size);
+}
+
+void Controller::clrSetTranslateY(int size)
+{
+    model.setTranslateY(size);
+}
+
+void Controller::clrSetTranslateZ(int size)
+{
+    model.setTranslateZ(size);
+}
+
+void Controller::clrSetRotateX(int size)
+{
+    model.setRotateX(size);
+}
+
+void Controller::clrSetRotateY(int size)
+{
+    model.setRotateY(size);
+}
+
+void Controller::clrSetRotateZ(int size)
+{
+    model.setRotateZ(size);
+}
+
+void Controller::clrSetScale(int size)
+{
+    model.setScale(size);
+}
+
 void Controller::clrProjectionSetup(int w, int h)
 {
     model.projectionSetup(w, h);

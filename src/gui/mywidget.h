@@ -19,7 +19,7 @@
 #include <QImage>
 #include <QDebug>
 
-#include "../core/Controller.hpp"
+#include "core/Controller.hpp"
 
 class MyWidget : public QOpenGLWidget, protected QOpenGLFunctions {
     Q_OBJECT
@@ -38,6 +38,14 @@ public:
     void indexSetVertexType(const int index);
     void chooseVertexColor();
     void setVertexWidht(const int size);
+    void setTranslateX(int size);
+    void setTranslateY(int size);
+    void setTranslateZ(int size);
+    void setRotateX(int size);
+    void setRotateY(int size);
+    void setRotateZ(int size);
+    void setScale(int size);
+
 
 protected:
     void initializeGL() override;

@@ -18,22 +18,7 @@ void MyWidget::resizeGL(int w, int h) {
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    // Перспективная проекция вручную
-    double ratio = (float)w / (float)h;
-    double my_near = 0.1f, my_far = 100.0f;
-    double fov = 45.0f * 3.14159f / 180.0f; // Угол обзора в радианах
-
-    // Матрица перспективы вручную
-    double f = 1.0f / tan(fov / 2);
-    double mat[16] = {
-        f / ratio, 0, 0, 0,
-        0, f, 0, 0,
-        0, 0, (my_far + my_near) / (my_near - my_far), -1,
-        0, 0, (2 * my_far * my_near) / (my_near - my_far), 0
-    };
-
-    glLoadMatrixd(mat);  // Загружаем матрицу в OpenGL
-    // controller.clrProjectionSetup(w, h);
+    controller.clrProjectionSetup(w, h);
     glMatrixMode(GL_MODELVIEW);
 }
 
@@ -122,4 +107,39 @@ void MyWidget::setVertexWidht(const int size)
 {
     controller.clrSetVertexWidht(size);
     update();
+}
+
+void MyWidget::setTranslateX(int size)
+{
+    controller.clrSetTranslateX(size);
+}
+
+void MyWidget::setTranslateY(int size)
+{
+    controller.clrSetTranslateY(size);
+}
+
+void MyWidget::setTranslateZ(int size)
+{
+    controller.clrSetTranslateZ(size);
+}
+
+void MyWidget::setRotateX(int size)
+{
+    controller.clrSetRotateX(size);
+}
+
+void MyWidget::setRotateY(int size)
+{
+    controller.clrSetRotateY(size);
+}
+
+void MyWidget::setRotateZ(int size)
+{
+    controller.clrSetRotateZ(size);
+}
+
+void MyWidget::setScale(int size)
+{
+    controller.clrSetScale(size);
 }

@@ -3,59 +3,24 @@
 namespace s21 {
 Model::Model()
 {
-    s21::TransformMatrixBuilder builder;
-    auto t = builder.translate(0,0,0).scale(1.,1.9,1.0).rotate(45, 0,1,0).build();
-    scene.transform(t);
-
     s21::TransformMatrixBuilder builder1;
     auto t1 = builder1.rotate(5, 0,1,0).build();
     scene.animate_start(t1);
-
-    s21::TransformMatrixBuilder builder2;
-    auto t2 = builder2.translate(0.5,0.,-5.).build();
-    scene.set_view(t2);
 }
 
 void Model::loadOBJ(const QString &filename) {
-    // QFile file(filename);
-    // if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    //     qWarning("Cannot open the file.");
-    //     return;
-    // }
-
-    // QTextStream in(&file);
-    // QString line;
-
-    // // Чтение строк файла
-    // while (!in.atEnd()) {
-    //     line = in.readLine();
-    //     if (line.startsWith("v ")) {  // Вершины
-    //         QStringList parts = line.split(' ');
-    //         Vertex vertex = { parts[1].toFloat(), parts[2].toFloat(), parts[3].toFloat() };
-    //         vertices.append(vertex);
-    //     } else if (line.startsWith("f ")) {  // Полигоны
-    //         QStringList parts = line.split(' ');
-    //         Face face;
-    //         // Формат в obj файле может быть разным, например "f 1/1 2/2 3/3". Нам интересует только индексы вершин
-    //         face.v1 = parts[1].split('/')[0].toInt() - 1;
-    //         face.v2 = parts[2].split('/')[0].toInt() - 1;
-    //         face.v3 = parts[3].split('/')[0].toInt() - 1;
-    //         faces.append(face);
-    //     }
-    // }
-    // file.close();
     scene.load_obj(filename.toStdString());
 }
 
 void Model::setBackgroundColor(const QColor &color) {
     if (color.isValid()) {
-        backgroundColor = color;
+        settings.backgroundColor = color;
     }
 }
 
 void Model::setEdgeColor(const QColor &color) {
     if (color.isValid()) {
-        edgeColor = color;
+        settings.edgeColor = color;
     }
 }
 
@@ -71,11 +36,11 @@ void Model::indexSetProjectionType(const int index, int w, int h)
 void Model::setProjectionType(const ProjectionType type, int w, int h) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    projectionType = type;
-    if (projectionType == Central) {
+    settings.projectionType = type;
+    if (settings.projectionType == Central) {
         gluPerspective(45.0f, (float)w / (float)h, 0.1f, 100.0f);  // центральная проекция
     }
-    else if (projectionType == Parallel) {
+    else if (settings.projectionType == Parallel) {
         glOrtho(-2, 2, -2, 2, 1, 100); // параллельная проекция
     }
     glMatrixMode(GL_MODELVIEW);
@@ -91,12 +56,12 @@ void Model::indexSetLineType(const int index)
 }
 
 void Model::setLineType(const LineType type) {
-    lineType = type;
+    settings.lineType = type;
 }
 
 void Model::setLineWidht(const int size)
 {
-    lineWidth = size;
+    settings.lineWidth = size;
 }
 
 void Model::indexSetVertexType(const int index)
@@ -111,42 +76,76 @@ void Model::indexSetVertexType(const int index)
 }
 
 void Model::setVertexType(const VertexType type) {
-    vertexType = type;
+    settings.vertexType = type;
 }
 
 void Model::setVertexColor(const QColor &color) {
     if (color.isValid()) {
-        vertexColor = color;
+        settings.vertexColor = color;
     }
 }
 
 void Model::setVertexWidht(const int size)
 {
-    vertexWidth = size;
+    settings.vertexWidth = size;
+}
+
+void Model::setTranslateX(int size)
+{
+    settings.tx = (double)size / 10;
+}
+
+void Model::setTranslateY(int size)
+{
+    settings.ty = (double)size / 10;
+}
+
+void Model::setTranslateZ(int size)
+{
+    settings.tz = (double)size / 10;
+}
+
+void Model::setRotateX(int size)
+{
+    settings.rx = (double)size;
+}
+
+void Model::setRotateY(int size)
+{
+    settings.ry = (double)size;
+}
+
+void Model::setRotateZ(int size)
+{
+    settings.rz = (double)size;
+}
+
+void Model::setScale(int size)
+{
+    settings.sx = (double)(size + 5) / 10;
+    settings.sy = (double)(size + 5) / 10;
+    settings.sz = (double)(size + 5) / 10;
+    // qDebug() << sz;
 }
 
 void Model::projectionSetup(int w, int h)
 {
-    if (projectionType == Central) {
+    if (settings.projectionType == Central) {
         gluPerspective(45.0f, (float)w / (float)h, 0.1f, 100.0f);  // центральная проекция
     }
-    else if (projectionType == Parallel) {
+    else if (settings.projectionType == Parallel) {
         glOrtho(-2, 2, -2, 2, 1, 100); // параллельная проекция
     }
 }
 
 void Model::drawingSettings()
 {
-    // glTranslatef(0.0f, 0.0f, -5.0f);  // Двигаем камеру назад
-    // glRotatef(rotationX, 1.0f, 0.0f, 0.0f);  // Вращение по X
-    // glRotatef(rotationY, 0.0f, 1.0f, 0.0f);  // Вращение по Y
-
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // Включаем каркасный режим
-    glClearColor(backgroundColor.redF(), backgroundColor.greenF(), backgroundColor.blueF(), 1.0f); // Цвет фона
-    glColor3f(edgeColor.redF(), edgeColor.greenF(), edgeColor.blueF());  // Цвет ребер
-    glLineWidth(lineWidth); // толщина
+    glClearColor(settings.backgroundColor.redF(), settings.backgroundColor.greenF(), settings.backgroundColor.blueF(), 1.0f); // Цвет фона
+    glColor3f(settings.edgeColor.redF(), settings.edgeColor.greenF(), settings.edgeColor.blueF());  // Цвет ребер
+    glLineWidth(settings.lineWidth); // толщина
 
-    if (lineType == Dotted) {
+    if (settings.lineType == Dotted) {
         // Включаем пунктирные линии
         glEnable(GL_LINE_STIPPLE);
         glLineStipple(1, 0x0101);
@@ -162,9 +161,17 @@ void Model::drawingSettings()
     // }
     // glEnd();
 
+    s21::TransformMatrixBuilder builder;
+    auto t = builder.translate(settings.tx, settings.ty, settings.tz).scale(settings.sx, settings.sy, settings.sz).rotate(settings.rx, 1,0,0).rotate(settings.ry, 0,1,0).rotate(settings.rz, 0,0,1).build();
+    scene.transform(t);
+
+    s21::TransformMatrixBuilder builder2;
+    auto t2 = builder2.translate(0.,0.,-5.).build();
+    scene.set_view(t2);
+
     scene.render();
 
-    if (lineType == Dotted) {
+    if (settings.lineType == Dotted) {
         // Выключаем пунктирные линии
         glDisable(GL_LINE_STIPPLE);
     }
@@ -181,24 +188,21 @@ void Model::drawingSettings()
     //     }
     //     glEnd();
     // }
-
-    // rotationX += 1.0f; // Вращение по X
-    // rotationY += 1.0f;  // Вращение по Y
 }
 
 QColor Model::getBackgroundColor()
 {
-    return backgroundColor;
+    return settings.backgroundColor;
 }
 
 QColor Model::getEdgeColor()
 {
-    return edgeColor;
+    return settings.edgeColor;
 }
 
 QColor Model::getVertexColor()
 {
-    return vertexColor;
+    return settings.vertexColor;
 }
 
 } // namespace s21

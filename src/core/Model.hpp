@@ -24,17 +24,29 @@ enum ProjectionType {Central, Parallel};
 enum LineType {Solid, Dotted};
 enum VertexType {None, Circle, Square};
 
-// // Структура для хранения вершины
-// struct Vertex {
-//     float x, y, z;
-// };
-
-// // Структура для хранения полигона (треугольника)
-// struct Face {
-//     int v1, v2, v3;
-// };
-
 namespace s21 {
+
+struct Settings {
+    QColor backgroundColor = QColor(Qt::black);
+    QColor edgeColor = QColor(Qt::white);
+    ProjectionType projectionType = Central;
+    LineType lineType = Solid;
+    int lineWidth = 1;
+    QColor vertexColor = QColor(Qt::red);
+    VertexType vertexType = None;
+    int vertexWidth = 0;
+
+    double tx = 0;
+    double ty = 0;
+    double tz = 0;
+    double sx = 0.5;
+    double sy = 0.5;
+    double sz = 0.5;
+    double rx = 0;
+    double ry = 0;
+    double rz = 0;
+};
+
 class Model {
     public:
         Model();
@@ -50,6 +62,13 @@ class Model {
         void setVertexType(const VertexType type);
         void setVertexColor(const QColor &color);
         void setVertexWidht(const int size);
+        void setTranslateX(int size);
+        void setTranslateY(int size);
+        void setTranslateZ(int size);
+        void setRotateX(int size);
+        void setRotateY(int size);
+        void setRotateZ(int size);
+        void setScale(int size);
 
         void projectionSetup(int w, int h);
         void drawingSettings();
@@ -59,20 +78,9 @@ class Model {
         QColor getVertexColor();
 
     private:
-        // QVector<Vertex> vertices; // Хранение вершин модели
-        // QVector<Face> faces;      // Хранение полигонов модели
-        float rotationX = 0.0f;
-        float rotationY = 0.0f;
-        QColor backgroundColor = QColor(Qt::black);
-        QColor edgeColor = QColor(Qt::white);
-        ProjectionType projectionType = Central;
-        LineType lineType = Solid;
-        int lineWidth = 1;
-        QColor vertexColor = QColor(Qt::red);
-        VertexType vertexType = None;
-        int vertexWidth = 0;
-
+        Settings settings;
         s21::Scene scene;
+
 };
 }  // namespace s21
 #endif  // __MODEL_H__

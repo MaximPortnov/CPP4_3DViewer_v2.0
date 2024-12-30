@@ -41,6 +41,9 @@
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
+          <property name="minimum">
+           <number>-99</number>
+          </property>
          </widget>
         </item>
         <item row="10" column="0">
@@ -76,6 +79,9 @@ color: rgb(255, 255, 255);</string>
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
+          <property name="minimum">
+           <number>-99</number>
+          </property>
          </widget>
         </item>
         <item row="4" column="0">
@@ -93,6 +99,12 @@ color: rgb(255, 255, 255);</string>
          <widget class="QSpinBox" name="spinBox_6">
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <number>-360</number>
+          </property>
+          <property name="maximum">
+           <number>360</number>
           </property>
          </widget>
         </item>
@@ -122,6 +134,9 @@ color: rgb(255, 255, 255);</string>
          <widget class="QSpinBox" name="spinBox_9">
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <number>-99</number>
           </property>
          </widget>
         </item>
@@ -221,12 +236,21 @@ color: rgb(255, 255, 255);</string>
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
+          <property name="minimum">
+           <number>-99</number>
+          </property>
          </widget>
         </item>
         <item row="2" column="3">
          <widget class="QSpinBox" name="spinBox_7">
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <number>-360</number>
+          </property>
+          <property name="maximum">
+           <number>360</number>
           </property>
          </widget>
         </item>
@@ -241,6 +265,12 @@ color: rgb(255, 255, 255);</string>
          <widget class="QSpinBox" name="spinBox_5">
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <number>-360</number>
+          </property>
+          <property name="maximum">
+           <number>360</number>
           </property>
          </widget>
         </item>
@@ -391,6 +421,16 @@ color: rgb(255, 255, 255);</string>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="pushButton_6">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Анимация</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QPushButton" name="pushButton_4">
           <property name="styleSheet">

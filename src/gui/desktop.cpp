@@ -1,5 +1,5 @@
 #include "desktop.h"
-#include "./ui_desktop.h"
+#include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -36,7 +36,7 @@ void MainWindow::updateStatusBar(QString &fileName, int vertexCount, int surface
 
 void MainWindow::on_action_triggered()
 {
-    QString path = QCoreApplication::applicationDirPath() + "/../../3d объекты";
+    QString path = QCoreApplication::applicationDirPath() + "/../../3d_objs";
     QString fileName = QFileDialog::getOpenFileName(this, "Выбрать файл", path, "All Files (*.obj)");
     updateStatusBar(fileName, 2, 2);
     mW->loadOBJ(fileName);
@@ -103,4 +103,42 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_spinBox_11_valueChanged(int arg1)
 {
     mW->setVertexWidht(arg1);
+}
+
+void MainWindow::on_spinBox_valueChanged(int arg1)
+{
+    mW->setTranslateX(arg1);
+}
+
+
+void MainWindow::on_spinBox_2_valueChanged(int arg1)
+{
+    mW->setTranslateY(arg1);
+}
+
+
+void MainWindow::on_spinBox_4_valueChanged(int arg1)
+{
+    mW->setTranslateZ(arg1);
+}
+
+
+void MainWindow::on_spinBox_5_valueChanged(int arg1)
+{
+    mW->setRotateX(arg1);
+}
+
+void MainWindow::on_spinBox_6_valueChanged(int arg1)
+{
+    mW->setRotateY(arg1);
+}
+
+void MainWindow::on_spinBox_7_valueChanged(int arg1)
+{
+    mW->setRotateZ(arg1);
+}
+
+void MainWindow::on_spinBox_9_valueChanged(int arg1)
+{
+    mW->setScale(arg1);
 }
