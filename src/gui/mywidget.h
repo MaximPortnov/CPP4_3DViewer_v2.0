@@ -19,7 +19,7 @@
 #include <QImage>
 #include <QDebug>
 
-#include "core/Controller.hpp"
+#include "../core/Controller.hpp"
 
 class MyWidget : public QOpenGLWidget, protected QOpenGLFunctions {
     Q_OBJECT
