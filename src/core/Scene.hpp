@@ -11,13 +11,16 @@ class Scene {
   s21::TransformMatrix _matrix_animate;
   s21::TransformMatrix _matrix_view;
   bool _transform_loop = false;
-  public:
+
+ public:
   void load_obj(const std::string& path);
   void render(VertexType vertexType, QColor vertexColor, int vertexWidth);
   void transform(TransformMatrix matrix);
   void animate_start(TransformMatrix matrix);
   void animate_stop();
   void set_view(TransformMatrix matrix);
+  std::size_t count_vertices();
+  std::size_t count_surfaces();
 };
 }  // namespace s21
 #endif  // __SCENE_H__

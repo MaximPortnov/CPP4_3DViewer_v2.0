@@ -76,4 +76,6 @@ void Object::render_vertex_type(VertexType vertexType, QColor vertexColor,
   }
   glEnd();
 }
+std::size_t Object::count_vertices() { return vertices.size(); }
+std::size_t Object::count_surfaces() { return surfaces.size(); }
 }  // namespace s21

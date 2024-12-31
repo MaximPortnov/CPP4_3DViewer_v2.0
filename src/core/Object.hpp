@@ -26,6 +26,8 @@ class Object {
   
   void render_vertex_type(VertexType vertexType, QColor vertexColor, int vertexWidth);
 
+  std::size_t count_vertices();
+  std::size_t count_surfaces();
 };
 }  // namespace s21
 
