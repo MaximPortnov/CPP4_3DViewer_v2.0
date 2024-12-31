@@ -50,15 +50,29 @@ Object Object::load_obj(const std::string& path) {
 }
 
 void Object::render() {
-  
   glBegin(GL_TRIANGLES);
   for (const auto& el : surfaces) {
-    // glColor3d(1, 0, 0);
     for (int i = 0; i < 3; i++) {
-      const auto& temp = vertices[el.nodes[i].vertex_index-1];
+      const auto& temp = vertices[el.nodes[i].vertex_index - 1];
       glVertex3d(temp.X, temp.Y, temp.Z);
     }
-    // el.nodes
+  }
+  glEnd();
+}
+
+void Object::render_vertex_type(VertexType vertexType, QColor vertexColor,
+                                int vertexWidth) {
+  if (vertexType == None) return;
+  glColor3f(vertexColor.redF(), vertexColor.greenF(), vertexColor.blueF());
+  glPointSize(vertexWidth);
+  glEnable(GL_POINT_SMOOTH);
+  if (vertexType == Square) glDisable(GL_POINT_SMOOTH);
+  glBegin(GL_POINTS);
+  for (const auto& el : surfaces) {
+    for (int i = 0; i < 3; i++) {
+      const auto& temp = vertices[el.nodes[i].vertex_index - 1];
+      glVertex3d(temp.X, temp.Y, temp.Z);
+    }
   }
   glEnd();
 }

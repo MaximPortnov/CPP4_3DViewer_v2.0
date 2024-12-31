@@ -169,7 +169,7 @@ void Model::drawingSettings()
     auto t2 = builder2.translate(0.,0.,-5.).build();
     scene.set_view(t2);
 
-    scene.render();
+    scene.render(settings.vertexType, settings.vertexColor, settings.vertexWidth);
 
     if (settings.lineType == Dotted) {
         // Выключаем пунктирные линии

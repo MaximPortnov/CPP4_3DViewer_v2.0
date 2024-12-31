@@ -5,7 +5,7 @@ void Scene::load_obj(const std::string& path) {
   _object = s21::Object::load_obj(path);
 }
 
-void Scene::render() {
+void Scene::render(VertexType vertexType, QColor vertexColor, int vertexWidth) {
   if (_transform_loop) {
     _matrix.mult_matrix(_matrix_animate);
   }
@@ -14,6 +14,7 @@ void Scene::render() {
   _matrix_view.load_matrix();
   _matrix.load_matrix();
   _object.render();
+  _object.render_vertex_type(vertexType, vertexColor, vertexWidth);
   glPopMatrix();
 }
 

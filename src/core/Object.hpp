@@ -12,6 +12,7 @@
 
 #include "Surface.hpp"
 #include "Vertex.hpp"
+#include "const.hpp"
 
 namespace s21 {
 class Object {
@@ -22,6 +23,9 @@ class Object {
  public:
   static Object load_obj(const std::string& path);
   void render();
+  
+  void render_vertex_type(VertexType vertexType, QColor vertexColor, int vertexWidth);
+
 };
 }  // namespace s21
 

@@ -61,8 +61,8 @@ void MyWidget::startGifRecording(const QString &filePath) {
 }
 
 void MyWidget::chooseBackgroundColor() {
-    QColor color = QColorDialog::getColor(controller.clrGetBackgroundColor(), this, "Выбрать цвет фона");
-    controller.clrSetBackgroundColor(color);
+    QColor color1 = QColorDialog::getColor(controller.clrGetBackgroundColor(), this, "Выбрать цвет фона");
+    controller.clrSetBackgroundColor(color1);
     update();
 }
 

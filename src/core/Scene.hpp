@@ -13,7 +13,7 @@ class Scene {
   bool _transform_loop = false;
   public:
   void load_obj(const std::string& path);
-  void render();
+  void render(VertexType vertexType, QColor vertexColor, int vertexWidth);
   void transform(TransformMatrix matrix);
   void animate_start(TransformMatrix matrix);
   void animate_stop();
