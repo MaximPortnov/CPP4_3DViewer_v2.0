@@ -10,6 +10,8 @@
 #include "../core/Object.hpp"
 #undef private
 
+#include "../core/Settings.hpp"
+
 extern std::string path;
 
 

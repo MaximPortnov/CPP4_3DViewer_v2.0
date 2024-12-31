@@ -17,7 +17,7 @@
 #include <QImage>
 #include <QDebug>
 
-#include "const.hpp"
+#include "Settings.hpp"
 #include "Scene.hpp"
 #include "TransformMatrix.hpp"
 
