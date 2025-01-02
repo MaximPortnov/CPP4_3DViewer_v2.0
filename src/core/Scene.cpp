@@ -32,4 +32,6 @@ void Scene::set_view(TransformMatrix matrix) { _matrix_view = matrix; }
 std::size_t Scene::count_vertices() { return _object.count_vertices(); }
 
 std::size_t Scene::count_surfaces() { return _object.count_surfaces(); }
+
+std::size_t Scene::count_edges() { return _object.count_edges(); }
 }  // namespace s21

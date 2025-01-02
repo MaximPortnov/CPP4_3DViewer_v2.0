@@ -57,8 +57,18 @@ private slots:
     void on_spinBox_7_valueChanged(int arg1);
 
     void on_spinBox_9_valueChanged(int arg1);
+    
+
+    void on_spinBox_3_valueChanged(int arg1);
+
+    void on_spinBox_8_valueChanged(int arg1);
+
+    void on_spinBox_12_valueChanged(int arg1);
+    void on_pushButton_6_clicked();
+    
 
 private:
+  bool animate = false;
     Ui::MainWindow *ui;
     MyWidget *mW;
 };

@@ -1,6 +1,8 @@
 #ifndef __SETTINGS_H__
 #define __SETTINGS_H__
-
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -28,6 +30,9 @@ struct Settings {
   double rx = 0;
   double ry = 0;
   double rz = 0;
+  double ax = 0;
+  double ay = 0;
+  double az = 0;
 
   static void save(Settings a);
   static Settings load();

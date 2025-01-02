@@ -127,7 +127,7 @@ valgrind_test: build_debug
 	valgrind $(FLAG_VALGRIND) ${TEST_EXE}
 
 gcov_report: test
-	lcov --gcov-tool gcov --capture ${lcov_dirs} --output-file ${COVERAGE_INFO} --base-directory . --no-external --rc lcov_branch_coverage=1 --include '*/src/*'
+	lcov --gcov-tool gcov --capture ${lcov_dirs} --output-file ${COVERAGE_INFO} --base-directory . --no-external --rc lcov_branch_coverage=2 --include '*/src/*' --debug
 	genhtml ${COVERAGE_INFO} --output-directory ${COVERAGE_REPORT}
 
 clang_check:

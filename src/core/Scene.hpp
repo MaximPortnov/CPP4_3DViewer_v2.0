@@ -21,6 +21,7 @@ class Scene {
   void set_view(TransformMatrix matrix);
   std::size_t count_vertices();
   std::size_t count_surfaces();
+  std::size_t count_edges();
 };
 }  // namespace s21
 #endif  // __SCENE_H__

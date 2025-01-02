@@ -16,6 +16,16 @@ std::vector<std::string> split(std::string_view str,
 }
 }  // namespace
 
+std::string readFile(const std::string& fileName) {
+    std::ifstream f(fileName);
+    f.seekg(0, std::ios::end);
+    size_t size = f.tellg();
+    std::string s(size, ' ');
+    f.seekg(0);
+    f.read(&s[0], size); // по стандарту можно в C++11, по факту работает и на старых компиляторах
+    return s;
+}
+
 namespace s21 {
 Object Object::load_obj(const std::string& path) {
   Object res;
@@ -23,8 +33,11 @@ Object Object::load_obj(const std::string& path) {
   if (!object_file.is_open()) {
     throw std::runtime_error("HelloНе удалось найти файл");
   }
+  std::string s = readFile(path);
+  std::istringstream s1(s);
   std::string line;
-  while (std::getline(object_file, line)) {
+
+  while (std::getline(s1, line)) {
     std::istringstream iss(line);
     std::string prefix;
     iss >> prefix;
@@ -39,9 +52,15 @@ Object Object::load_obj(const std::string& path) {
       auto f2_split = split(f2, "/");
       auto f3_split = split(f3, "/");
       s21::Surface surface;
-      surface.nodes[0].vertex_index = std::stoi(f1_split[0]);
-      surface.nodes[1].vertex_index = std::stoi(f2_split[0]);
-      surface.nodes[2].vertex_index = std::stoi(f3_split[0]);
+      std::size_t v1 = std::stoi(f1_split[0]);
+      std::size_t v2 = std::stoi(f2_split[0]);
+      std::size_t v3 = std::stoi(f3_split[0]);
+      surface.nodes[0].vertex_index = v1;
+      surface.nodes[1].vertex_index = v2;
+      surface.nodes[2].vertex_index = v3;
+      res.edges.insert(std::minmax(v1,v2));
+      res.edges.insert(std::minmax(v2,v3));
+      res.edges.insert(std::minmax(v1,v3));
       res.surfaces.push_back(surface);
     }
   }
@@ -78,4 +97,5 @@ void Object::render_vertex_type(VertexType vertexType, QColor vertexColor,
 }
 std::size_t Object::count_vertices() { return vertices.size(); }
 std::size_t Object::count_surfaces() { return surfaces.size(); }
+std::size_t Object::count_edges() {return edges.size();}
 }  // namespace s21

@@ -13,12 +13,12 @@ class Scene;
 struct Matrix4x4 {
   using Matrix = std::array<double, 4 * 4>;
   Matrix matrix;
+
  public:
   double* operator[](std::size_t index);
   const double* operator[](std::size_t index) const;
   Matrix4x4();
   Matrix4x4(const Matrix4x4& other);
-  Matrix4x4(Matrix4x4&& other);
   Matrix4x4& operator=(const Matrix4x4& other);
   Matrix4x4& operator=(Matrix4x4&& other);
   Matrix4x4& dot(const Matrix4x4& other);
@@ -26,6 +26,7 @@ struct Matrix4x4 {
 };
 
 class TransformMatrix {
+ private:
   Matrix4x4 _matrix;
   // double matrix[16];
 

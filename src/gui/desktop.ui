@@ -29,13 +29,6 @@
       </property>
       <item>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="7" column="1" colspan="3">
-         <widget class="QSpinBox" name="spinBox_10">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="2">
          <widget class="QSpinBox" name="spinBox_2">
           <property name="styleSheet">
@@ -46,188 +39,17 @@
           </property>
          </widget>
         </item>
-        <item row="10" column="0">
-         <widget class="QLabel" name="label_14">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Размер вершин:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1" colspan="3">
-         <widget class="QComboBox" name="comboBox_2">
+        <item row="10" column="1" colspan="3">
+         <widget class="QSpinBox" name="spinBox_11">
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
-          <item>
-           <property name="text">
-            <string>Сплошная</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Пунктирная</string>
-           </property>
-          </item>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QSpinBox" name="spinBox">
+        <item row="7" column="1" colspan="3">
+         <widget class="QSpinBox" name="spinBox_10">
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="minimum">
-           <number>-99</number>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_8">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Тип проекции:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QSpinBox" name="spinBox_6">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="minimum">
-           <number>-360</number>
-          </property>
-          <property name="maximum">
-           <number>360</number>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="1" colspan="3">
-         <widget class="QComboBox" name="comboBox_3">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>Отсутствует</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Круг</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Квадрат</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="3" column="1" colspan="3">
-         <widget class="QSpinBox" name="spinBox_9">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="minimum">
-           <number>-99</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Перемещение:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="1" colspan="3">
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Выбрать цвет</string>
-          </property>
-         </widget>
-        </item>
-        <item row="11" column="1" colspan="3">
-         <widget class="QPushButton" name="pushButton_3">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Выбрать цвет</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1" colspan="3">
-         <widget class="QComboBox" name="comboBox">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>Центральная</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Параллельная</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="11" column="0">
-         <widget class="QLabel" name="label_15">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Цвет фона:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1" colspan="3">
-         <widget class="QPushButton" name="pushButton">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Выбрать цвет</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_9">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Тип ребер:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_11">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Толщина ребер:</string>
           </property>
          </widget>
         </item>
@@ -238,123 +60,6 @@ color: rgb(255, 255, 255);</string>
           </property>
           <property name="minimum">
            <number>-99</number>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3">
-         <widget class="QSpinBox" name="spinBox_7">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="minimum">
-           <number>-360</number>
-          </property>
-          <property name="maximum">
-           <number>360</number>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="1" colspan="3">
-         <widget class="QSpinBox" name="spinBox_11">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QSpinBox" name="spinBox_5">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="minimum">
-           <number>-360</number>
-          </property>
-          <property name="maximum">
-           <number>360</number>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Масштаб:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Поворот:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0">
-         <widget class="QLabel" name="label_12">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Способ отображения вершин:</string>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="0">
-         <widget class="QLabel" name="label_13">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Цвет вершин:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_10">
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>Цвет ребер:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLabel" name="label_4">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <bold>true</bold>
-            <underline>false</underline>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background: transparent;
-color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>X</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
         </item>
@@ -384,6 +89,219 @@ color: rgb(255, 255, 255);</string>
           </property>
          </widget>
         </item>
+        <item row="8" column="1" colspan="3">
+         <widget class="QComboBox" name="comboBox_3">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Отсутствует</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Круг</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Квадрат</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Толщина ребер:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Тип проекции:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Способ отображения вершин:</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QSpinBox" name="spinBox_7">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <number>-360</number>
+          </property>
+          <property name="maximum">
+           <number>360</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <bold>true</bold>
+            <underline>false</underline>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>X</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Перемещение:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1" colspan="3">
+         <widget class="QPushButton" name="pushButton">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Выбрать цвет</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0">
+         <widget class="QLabel" name="label_15">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Цвет фона:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Масштаб:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Цвет ребер:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Цвет вершин:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1" colspan="3">
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Выбрать цвет</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="spinBox_5">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <number>-360</number>
+          </property>
+          <property name="maximum">
+           <number>360</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Тип ребер:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" colspan="3">
+         <widget class="QComboBox" name="comboBox">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Центральная</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Параллельная</string>
+           </property>
+          </item>
+         </widget>
+        </item>
         <item row="0" column="3">
          <widget class="QLabel" name="label_7">
           <property name="sizePolicy">
@@ -407,6 +325,129 @@ color: rgb(255, 255, 255);</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Поворот:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" colspan="3">
+         <widget class="QSpinBox" name="spinBox_9">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <number>-99</number>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1" colspan="3">
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Выбрать цвет</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Размер вершин:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="spinBox">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <number>-99</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QSpinBox" name="spinBox_6">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="minimum">
+           <number>-360</number>
+          </property>
+          <property name="maximum">
+           <number>360</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1" colspan="3">
+         <widget class="QComboBox" name="comboBox_2">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Сплошная</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Пунктирная</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="12" column="1">
+         <widget class="QSpinBox" name="spinBox_3">
+          <property name="minimum">
+           <number>-360</number>
+          </property>
+          <property name="maximum">
+           <number>360</number>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="2">
+         <widget class="QSpinBox" name="spinBox_8">
+          <property name="minimum">
+           <number>-360</number>
+          </property>
+          <property name="maximum">
+           <number>360</number>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="3">
+         <widget class="QSpinBox" name="spinBox_12">
+          <property name="minimum">
+           <number>-360</number>
+          </property>
+          <property name="maximum">
+           <number>360</number>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="styleSheet">
+           <string notr="true">background: transparent;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Анимация:</string>
           </property>
          </widget>
         </item>
@@ -495,7 +536,7 @@ color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">

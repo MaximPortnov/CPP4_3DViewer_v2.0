@@ -36,7 +36,7 @@ if(WIN32)
     # SET(DESKTOP_LIB qt::qt OpenGL::GL OpenGL::GLU)
     find_package(OpenGL REQUIRED)
     find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets OpenGL)
-    SET(DESKTOP_LIB             Qt6::Core Qt6::Gui OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets Qt6::Widgets core)
+    SET(DESKTOP_LIB             Qt6::Core Qt6::Gui OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets Qt6::Widgets)
     SET(MAIN_LIB ${MAIN_LIB}    Qt6::Core Qt6::Gui OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets Qt6::Widgets Qt6::OpenGL)
     
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -45,7 +45,7 @@ if(WIN32)
 elseif(UNIX)
     find_package(Qt6 REQUIRED COMPONENTS Widgets OpenGL OpenGLWidgets )
     find_package(OpenGL REQUIRED)
-    SET(DESKTOP_LIB Qt6::Widgets Qt6::Core Qt6::Gui Qt6::OpenGL OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets core)
+    SET(DESKTOP_LIB Qt6::Widgets Qt6::Core Qt6::Gui Qt6::OpenGL OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets)
     SET(MAIN_LIB ${MAIN_LIB} Qt6::Core Qt6::Gui OpenGL::GL OpenGL::GLU Qt6::OpenGLWidgets Qt6::Widgets Qt6::OpenGL)
     include_directories(${Qt6OpenGL_INCLUDE_DIRS})
 endif()
@@ -54,7 +54,7 @@ endif()
 
 
 SET(MAIN_LIB ${MAIN_LIB} Qt6::OpenGL)
-SET(TEST_LIB ${MAIN_LIB} core)
+SET(TEST_LIB ${MAIN_LIB} core_test )
 
 # FLAGS
 SET(MAIN_FLAGS -Wall)
@@ -76,6 +76,8 @@ message(
 # FILES
 # file(GLOB_RECURSE TETRIS_LOGICAL_FILES "brick_game/tetris/*.c")
 file(GLOB_RECURSE CORE_FILES "core/*.cpp")
+file(GLOB_RECURSE MODEL_FILES "model/*.cpp")
+file(GLOB_RECURSE CONTROLLER_FILES "controller/*.cpp")
 
 file(GLOB_RECURSE DESKTOP_FILES "gui/*.cpp" "gui/*.ui")
 
@@ -84,17 +86,16 @@ file(GLOB_RECURSE DESKTOP_FILES "gui/*.cpp" "gui/*.ui")
 
 
 ####################################
-# create_library(tetris FILES ${TETRIS_LOGICAL_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB})
-# create_library(tetris_test FILES ${TETRIS_LOGICAL_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} DEFS MYDEBUG)
-# create_library(snake FILES ${SNAKE_LOGICAL_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB})
-# create_library(snake_test FILES ${SNAKE_LOGICAL_FILES} FLAGS ${TEST_FLAGS} LIBS ${TEST_LIB} DEFS MYDEBUG)
 add_subdirectory(third_party/QtGifImage)
 
 create_library(core FILES ${CORE_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} )
+create_library(model FILES ${MODEL_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} core)
+create_library(controller FILES ${CONTROLLER_FILES} FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} model)
+create_library(core_test FILES ${CORE_FILES} FLAGS ${MAIN_FLAGS} -fprofile-arcs -ftest-coverage -g LIBS ${MAIN_LIB}  -lcheck -lsubunit -pthread -lgcov )
 
 
 include_directories(${PROJECT_NAME} "./third_party/QtGifImage/include/")
-create_target(${PROJECT_NAME} FILES ${DESKTOP_FILES} FLAGS ${MAIN_FLAGS} LIBS ${DESKTOP_LIB} QtGifImage::QtGifImage)
+create_target(${PROJECT_NAME} FILES ${DESKTOP_FILES} FLAGS ${MAIN_FLAGS} LIBS ${DESKTOP_LIB} QtGifImage::QtGifImage core model controller)
 
 # create_target(s21_BrickGame FILES ${CONTROL_FILES} ${MOC_SOURCES} ${UI_HEADERS}  FLAGS ${MAIN_FLAGS} LIBS ${MAIN_LIB} tetris snake cli desktop)
 

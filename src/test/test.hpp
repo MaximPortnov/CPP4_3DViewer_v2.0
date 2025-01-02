@@ -8,9 +8,10 @@
 
 #define private public
 #include "../core/Object.hpp"
+#include "../core/Settings.hpp"
+#include "../core/TransformMatrix.hpp"
 #undef private
 
-#include "../core/Settings.hpp"
 
 extern std::string path;
 

@@ -1,6 +1,9 @@
 #ifndef __CONST_H__
 #define __CONST_H__
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #include <GL/glu.h>
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>

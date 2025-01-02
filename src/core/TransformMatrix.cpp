@@ -32,7 +32,6 @@ Matrix4x4::Matrix4x4() {
 
 Matrix4x4::Matrix4x4(const Matrix4x4& other) { matrix = other.matrix; }
 
-Matrix4x4::Matrix4x4(Matrix4x4&& other) { matrix = std::move(other.matrix); }
 
 Matrix4x4& Matrix4x4::operator=(const Matrix4x4& other) {
   matrix = other.matrix;
