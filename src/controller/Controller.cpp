@@ -1,16 +1,9 @@
 #include "Controller.hpp"
 
 namespace s21 {
-  void Controller::clrStopAnimate()
-  {
-    model.stopAnimate();
-  }
-  
-  void Controller::clrStartAnimate()
-  {
-    
-    model.startAnimate();
-  }
+void Controller::clrStopAnimate() { model.stopAnimate(); }
+
+void Controller::clrStartAnimate() { model.startAnimate(); }
 
 void Controller::clrLoadOBJ(const QString &filename) {
   model.loadOBJ(filename);
@@ -60,20 +53,15 @@ void Controller::clrSetRotateZ(int size) { model.setRotateZ(size); }
 
 void Controller::clrSetScale(int size) { model.setScale(size); }
 
-void Controller::clrSetAnimateRotateX(int size)
-{
+void Controller::clrSetAnimateRotateX(int size) {
   model.setAnimateRotateX(size);
 }
 
-void Controller::clrSetAnimateRotateY(int size)
-{
+void Controller::clrSetAnimateRotateY(int size) {
   model.setAnimateRotateY(size);
-  
 }
 
-void Controller::clrSetAnimateRotateZ(int size)
-{
-  
+void Controller::clrSetAnimateRotateZ(int size) {
   model.setAnimateRotateZ(size);
 }
 

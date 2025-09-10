@@ -9,16 +9,21 @@ Model::Model() {
 }
 
 void Model::stopAnimate() {
+  scene.animate_stop(); 
+  updateTranslate();
+
+  // scene.animate_start();
+}
+
+void Model::startAnimate() { 
   s21::TransformMatrixBuilder builder1;
   auto t1 = builder1.rotate(settings.ax, 1, 0, 0)
                 .rotate(settings.ay, 0, 1, 0)
                 .rotate(settings.az, 0, 0, 1)
                 .build();
   scene.animate_start(t1);
-  // scene.animate_start();
-}
-
-void Model::startAnimate() { scene.animate_stop(); }
+  
+  }
 
 void Model::loadOBJ(const QString &filename) {
   scene.load_obj(filename.toStdString());

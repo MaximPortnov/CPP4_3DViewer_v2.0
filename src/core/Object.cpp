@@ -65,6 +65,7 @@ Object Object::load_obj(const std::string& path) {
     }
   }
   object_file.close();
+  
   return res;
 }
 

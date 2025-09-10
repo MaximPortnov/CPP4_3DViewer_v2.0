@@ -113,11 +113,11 @@ void MainWindow::on_spinBox_12_valueChanged(int arg1) {
 void MainWindow::on_pushButton_6_clicked()
 {
   if (animate){
-    mW->startAnimate();
+    mW->stopAnimate();
     ui->pushButton_6->setText("Анимация");
     animate = false;
   } else {
-    mW->stopAnimate();
+    mW->startAnimate();
     ui->pushButton_6->setText("Стоп");
     animate = true;
   }
